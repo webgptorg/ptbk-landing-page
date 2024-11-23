@@ -2,6 +2,7 @@ import { Header } from "@/components/layout/Header"
 import { HeroSection } from "@/components/sections/HeroSection"
 import { SocialProofSection } from "@/components/sections/SocialProofSection"
 import {FeaturesSection} from "@/components/sections/FeaturesSection"
+import {TestimonialsSection} from "@/components/sections/TestimonialsSection";
 import { PlaygroundSection } from "@/components/sections/PlaygroundSection"
 import { Footer } from "@/components/layout/Footer";
 
@@ -12,6 +13,7 @@ export default function Home() {
             <main className="container mx-auto px-6 py-24">
                 <HeroSection />
                 <PlaygroundSection />
+                <TestimonialsSection />
                 <FeaturesSection />
                 <SocialProofSection />
                 <Footer />
