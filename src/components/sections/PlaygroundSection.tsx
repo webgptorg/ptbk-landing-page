@@ -5,16 +5,59 @@ import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
 import { useState } from "react"
 
+const PLACEHOLDER_TEXT = `#!/usr/bin/env ptbk
+
+# ✨ Example: Write Hello for a user
+
+-   URL \`https://promptbook.studio/examples/hello.book\`
+-   INPUT PARAMETER \`{yourName}\` Name of the user
+-   OUTPUT PARAMETER \`{greeting}\` Greeting for the user
+
+## Sample of the name
+
+- SAMPLE
+
+> Paul
+
+\`-> {yourName}\`
+
+## Sample of the name
+
+- SAMPLE
+
+> George
+
+\`-> {yourName}\`
+
+## Writing Greeting
+
+-   PERSONA Jane, HR professional with prior experience in writing emails
+-   EXPECT MIN 1 Word
+-   EXPECT MAX 1 Line
+
+\`\`\`markdown
+You are writing a greeting for {yourName}.
+
+## Rules
+
+-   Write just the greeting, nothing else
+\`\`\`
+
+\`-> {greeting}\``
+
 export function PlaygroundSection() {
-    const [input, setInput] = useState("")
+    const [input, setInput] = useState(PLACEHOLDER_TEXT)
     const [output, setOutput] = useState("")
     const [isGenerating, setIsGenerating] = useState(false)
 
     const handleGenerate = () => {
         setIsGenerating(true)
-        // Simulate generation
         setTimeout(() => {
-            setOutput("// Generated code will appear here")
+            setOutput(`$ npx ptbk books/hello.book.md
+            √ yourName ... The World
+            
+            --- Result: ---
+            greeting: Hello World!`)
             setIsGenerating(false)
         }, 1000)
     }
