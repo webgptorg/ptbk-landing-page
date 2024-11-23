@@ -2,7 +2,8 @@ import { Header } from "@/components/layout/Header"
 import { HeroSection } from "@/components/sections/HeroSection"
 import { SocialProofSection } from "@/components/sections/SocialProofSection"
 import {FeaturesSection} from "@/components/sections/FeaturesSection"
-import { PlaygroundSection } from "@/components/sections/PlaygroundSection";
+import { PlaygroundSection } from "@/components/sections/PlaygroundSection"
+import { Footer } from "@/components/layout/Footer";
 
 export default function Home() {
     return (
@@ -13,6 +14,7 @@ export default function Home() {
                 <PlaygroundSection />
                 <FeaturesSection />
                 <SocialProofSection />
+                <Footer />
             </main>
         </div>
     )
