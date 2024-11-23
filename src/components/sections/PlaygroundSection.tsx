@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 const PLACEHOLDER_TEXT = `#!/usr/bin/env ptbk
 
@@ -45,26 +45,39 @@ You are writing a greeting for {yourName}.
 
 \`-> {greeting}\``
 
+const TERMINAL_OUTPUT = `$ npx ptbk books/hello.book.md
+√ yourName ... The World
+
+--- Result: ---
+greeting: Hello World!`
+
 export function PlaygroundSection() {
     const [input, setInput] = useState(PLACEHOLDER_TEXT)
     const [output, setOutput] = useState("")
     const [isGenerating, setIsGenerating] = useState(false)
+    const [currentChar, setCurrentChar] = useState(0)
+
+    // Typing animation effect
+    useEffect(() => {
+        if (isGenerating && currentChar < TERMINAL_OUTPUT.length) {
+            const timer = setTimeout(() => {
+                setOutput(TERMINAL_OUTPUT.slice(0, currentChar + 1))
+                setCurrentChar(currentChar + 1)
+            }, 25) // Adjust speed here
+            return () => clearTimeout(timer)
+        } else if (currentChar >= TERMINAL_OUTPUT.length) {
+            setIsGenerating(false)
+        }
+    }, [currentChar, isGenerating])
 
     const handleGenerate = () => {
         setIsGenerating(true)
-        setTimeout(() => {
-            setOutput(`$ npx ptbk books/hello.book.md
-            √ yourName ... The World
-            
-            --- Result: ---
-            greeting: Hello World!`)
-            setIsGenerating(false)
-        }, 1000)
+        setCurrentChar(0)
+        setOutput("")
     }
 
     return (
         <section className="py-24 relative">
-            {/* Background effects */}
             <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
 
             <div className="container max-w-6xl mx-auto px-6 relative">
@@ -78,7 +91,6 @@ export function PlaygroundSection() {
                             <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-primary/30 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                             <Textarea
                                 className="min-h-[400px] font-mono relative bg-black/40 backdrop-blur-sm border-primary/20 hover:border-primary/30 transition-colors duration-300"
-                                placeholder="Describe your application..."
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
                             />
@@ -91,11 +103,29 @@ export function PlaygroundSection() {
                         <h3 className="text-sm font-medium">Generated Code</h3>
                         <div className="relative group">
                             <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-primary/50 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-                            <Textarea
-                                className="min-h-[400px] font-mono relative bg-black/40 backdrop-blur-sm border-primary/20 hover:border-primary/30 transition-colors duration-300"
-                                value={output}
-                                readOnly
-                            />
+                            <div
+                                className={`
+                 min-h-[400px] font-mono relative bg-black/90 backdrop-blur-sm 
+                 border border-primary/20 rounded-lg p-4 overflow-auto
+                 ${isGenerating ? 'after:content-["▊"] after:ml-1 after:animate-pulse after:text-primary' : ''}
+               `}
+                            >
+               <pre className="text-primary/90">
+                 <span className="text-green-400">{output.split('\n')[0]}</span>
+                   {output.split('\n').slice(1).map((line, i) => (
+                       <span key={i}>
+                     {'\n'}
+                           {line.startsWith('√') ? (
+                               <span className="text-green-400">{line}</span>
+                           ) : line.includes('Result:') ? (
+                               <span className="text-blue-400">{line}</span>
+                           ) : (
+                               <span className="text-gray-300">{line}</span>
+                           )}
+                   </span>
+                   ))}
+               </pre>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -113,7 +143,6 @@ export function PlaygroundSection() {
              transition-all duration-300
            `}
                     >
-                        {/* Button glow effect */}
                         <div className="absolute inset-0 bg-primary/20 blur-xl animate-pulse" />
                         <span className="relative">
              {isGenerating ? "Generating..." : "Generate Code"}
