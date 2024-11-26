@@ -5,6 +5,16 @@
             "name": "👨🏽‍💻 Develop",
             "commands": ["npm run dev"],
             "focus": false
+        },
+        {
+            "name": "🔁 Sync",
+            "commands": [
+                "git pull origin main",
+                "git pull vercel main",
+                "git push origin main",
+                "git push vercel main"
+            ],
+            "focus": true
         }
     ]
 }
