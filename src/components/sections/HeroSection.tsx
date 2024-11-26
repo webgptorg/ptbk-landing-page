@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 
 export function HeroSection() {
     return (
-        <div className="relative overflow-hidden p-8">
+        <div className="relative overflow-hidden">
             <BackgroundGrid />
             <div className="max-w-3xl space-y-8 relative z-10">
                 {/* added z-10 to put content above grid */}

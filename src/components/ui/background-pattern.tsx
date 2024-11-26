@@ -1,6 +1,6 @@
 'use client';
 
-import BackgroundImage from '../../../public/background.svg';
+import BackgroundImage from '../../../public/background-ptbk.svg';
 
 console.log('backgroundImage:', BackgroundImage);
 
