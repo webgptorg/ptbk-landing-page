@@ -2,54 +2,61 @@
 
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { spaceTrim } from '@promptbook/utils';
 import { useEffect, useState } from 'react';
 import { CodeEditor } from '../CodeEditor/CodeEditor';
 
-const PLACEHOLDER_TEXT = `
+const PLACEHOLDER_TEXT = spaceTrim(`
 
-# ✨ Example: Write Hello for a user
+    # ✨ Example: Write Hello for a user
 
--   URL \`https://promptbook.studio/examples/hello.book\`
--   INPUT PARAMETER \`{yourName}\` Name of the user
--   OUTPUT PARAMETER \`{greeting}\` Greeting for the user
+    -   URL \`https://promptbook.studio/examples/hello.book\`
+    -   INPUT PARAMETER \`{yourName}\` Name of the user
+    -   OUTPUT PARAMETER \`{greeting}\` Greeting for the user
 
-## Sample of the name
+    ## Sample of the name
 
-- SAMPLE
+    - SAMPLE
 
-> Paul
+    > Paul
 
-\`-> {yourName}\`
+    \`-> {yourName}\`
 
-## Sample of the name
+    ## Sample of the name
 
-- SAMPLE
+    - SAMPLE
 
-> George
+    > George
 
-\`-> {yourName}\`
+    \`-> {yourName}\`
 
-## Writing Greeting
+    ## Writing Greeting
 
--   PERSONA Jane, HR professional with prior experience in writing emails
--   EXPECT MIN 1 Word
--   EXPECT MAX 1 Line
+    -   PERSONA Jane, HR professional with prior experience in writing emails
+    -   EXPECT MIN 1 Word
+    -   EXPECT MAX 1 Line
 
-\`\`\`markdown
-You are writing a greeting for {yourName}.
+    \`\`\`markdown
+    You are writing a greeting for {yourName}.
 
-## Rules
+    ## Rules
 
--   Write just the greeting, nothing else
-\`\`\`
+    -   Write just the greeting, nothing else
+    \`\`\`
 
-\`-> {greeting}\``;
+    \`-> {greeting}\`
+    
+`);
 
-const TERMINAL_OUTPUT = `$ npx ptbk books/hello.book.md
-√ yourName ... The World
+const TERMINAL_OUTPUT = spaceTrim(`
+    
+    $ npx ptbk books/hello.book.md
+    √ yourName ... The World
 
---- Result: ---
-greeting: Hello World!`;
+    --- Result: ---
+    greeting: Hello World!
+
+`);
 
 export function PlaygroundSection() {
     const [input, setInput] = useState(PLACEHOLDER_TEXT);
