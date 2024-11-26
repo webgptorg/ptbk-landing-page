@@ -2,8 +2,8 @@
 
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { spaceTrim } from '@promptbook/utils';
 import { useEffect, useState } from 'react';
-import { spaceTrim } from 'spacetrim';
 import { CodeEditor } from '../CodeEditor/CodeEditor';
 
 const PLACEHOLDER_TEXT = spaceTrim(`
