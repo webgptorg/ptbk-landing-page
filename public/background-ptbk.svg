@@ -24,7 +24,7 @@
          xlink:href="#Hexagons"
          preserveAspectRatio="xMidYMid"
          id="pattern22"
-         patternTransform="matrix(2.8,0,0,2.8,1,1)"
+         patternTransform="matrix(1.777,0,0,1.777,1,1)"
          x="0"
          y="0" />
       <pattern
@@ -58,17 +58,17 @@
             id="g6">
             <path
                id="path6-4"
-               style="fill:#7e7e7e;;stroke-width:0.485301;stroke-linecap:round;paint-order:stroke fill markers;fill-opacity:0.13582677"
+               style="fill:#7e7e7e;;stroke-width:0.485301;stroke-linecap:round;paint-order:stroke fill markers;fill-opacity:0.9"
                d="M 99.696164,14.450115 74.938814,28.743777 50.181463,14.450115 v 0 L 74.938814,0.15645298 Z"
                sodipodi:nodetypes="ccccccc" />
             <path
                id="path6-4-7"
-               style="fill:#7e7e7e;;stroke-width:0.485301;stroke-linecap:round;paint-order:stroke fill markers;fill-opacity:0.49606299"
+               style="fill:#7e7e7e;;stroke-width:0.485301;stroke-linecap:round;paint-order:stroke fill markers;fill-opacity:0.5"
                d="M 74.938814,57.331101 50.181461,43.037439 50.18146,14.450113 v 0 l 24.757354,14.293664 z"
                sodipodi:nodetypes="ccccccc" />
             <path
                id="path6-4-0"
-               style="fill:#7e7e7e;;stroke-width:0.485301;stroke-linecap:round;paint-order:stroke fill markers;fill-opacity:0.71259844"
+               style="fill:#7e7e7e;;stroke-width:0.485301;stroke-linecap:round;paint-order:stroke fill markers;fill-opacity:0.1"
                d="m 99.696166,14.450115 -1e-5,28.587324 -24.757344,14.293663 v 0 -28.587325 z"
                sodipodi:nodetypes="ccccccc" />
          </g>
