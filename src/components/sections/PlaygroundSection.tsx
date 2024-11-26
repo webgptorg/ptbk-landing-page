@@ -5,7 +5,7 @@ import { Separator } from '@/components/ui/separator';
 import { useEffect, useState } from 'react';
 import { CodeEditor } from '../CodeEditor/CodeEditor';
 
-const PLACEHOLDER_TEXT = `#!/usr/bin/env ptbk
+const PLACEHOLDER_TEXT = `
 
 # ✨ Example: Write Hello for a user
 
