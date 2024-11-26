@@ -1,5 +1,6 @@
 import { BackgroundGrid } from '@/components/ui/background-grid';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export function HeroSection() {
     return (
@@ -11,8 +12,12 @@ export function HeroSection() {
                     Program in Plain English
                 </h1>
                 <p className="text-xl text-muted-foreground">
-                    A revolutionary 4th generation language that transforms natural language specifications into
-                    functional applications. Write what you want, get what you need.
+                    A revolutionary{' '}
+                    <Link href={'https://github.com/webgptorg/promptbook/discussions/180'} className="underline">
+                        4th generation language
+                    </Link>{' '}
+                    that transforms natural language specifications into functional applications. Write what you want,
+                    get what you need.
                 </p>
                 <div className="flex gap-4">
                     <Button size="lg">Get Started</Button>
