@@ -7,6 +7,32 @@
             "focus": false
         },
         {
+            "name": "🧪 Lint test",
+            "command": "npm run lint",
+            "execute": false
+        },
+        {
+            "name": "🩹 Lint fix",
+            "command": "npm run lint -- --fix",
+            "onlySingle": true,
+            "execute": false
+        },
+        {
+            "name": "🧪 Unit tests",
+            "command": "npm run test-unit",
+            "execute": false
+        },
+        {
+            "name": "🧪 Test build",
+            "command": "npm run test-build",
+            "execute": false
+        },
+        {
+            "name": "🧪 Test types",
+            "command": "npm run test-types",
+            "execute": false
+        },
+        {
             "name": "🔁 Sync",
             "commands": [
                 "git pull origin main",
