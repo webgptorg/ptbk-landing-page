@@ -10,6 +10,7 @@ export function useTouchDeviceDetection(): boolean {
 
     useEffect(() => {
         const isTouchDevice =
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             'ontouchstart' in window || navigator.maxTouchPoints > 0 || (navigator as any).msMaxTouchPoints > 0;
         setTouchDevice(isTouchDevice);
     }, []);

@@ -1,36 +1,30 @@
-"use client"
+'use client';
 
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel"
-import { Card, CardContent } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { motion } from "framer-motion"
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Card, CardContent } from '@/components/ui/card';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { motion } from 'framer-motion';
 
 const testimonials = [
     {
-        quote: "This is revolutionizing how we write software. What used to take weeks now takes hours.",
-        author: "Sarah Chen",
-        role: "CTO, TechStart",
-        avatar: "/avatar1.png"
+        quote: 'This is revolutionizing how we write software. What used to take weeks now takes hours.',
+        author: 'Sarah Chen',
+        role: 'CTO, TechStart',
+        avatar: '/avatar1.png',
     },
     {
-        quote: "The ability to describe features in plain English and get working code is incredible.",
-        author: "Michael Rodriguez",
-        role: "Lead Developer, EnterpriseAI",
-        avatar: "/avatar2.png"
+        quote: 'The ability to describe features in plain English and get working code is incredible.',
+        author: 'Michael Rodriguez',
+        role: 'Lead Developer, EnterpriseAI',
+        avatar: '/avatar2.png',
     },
     {
-        quote: "This tool has completely transformed our development workflow. Game-changing technology.",
-        author: "Emily Watson",
-        role: "Product Manager, InnovateCo",
-        avatar: "/avatar3.png"
+        quote: 'This tool has completely transformed our development workflow. Game-changing technology.',
+        author: 'Emily Watson',
+        role: 'Product Manager, InnovateCo',
+        avatar: '/avatar3.png',
     },
-]
+];
 
 export function TestimonialsSection() {
     return (
@@ -39,13 +33,11 @@ export function TestimonialsSection() {
             <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
 
             <div className="container relative">
-                <h2 className="text-3xl font-bold text-center mb-12">
-                    What Developers Are Saying
-                </h2>
+                <h2 className="text-3xl font-bold text-center mb-12">What Developers Are Saying</h2>
 
                 <Carousel
                     opts={{
-                        align: "start",
+                        align: 'start',
                     }}
                     className="w-full max-w-4xl mx-auto"
                 >
@@ -66,7 +58,7 @@ export function TestimonialsSection() {
                                             <CardContent className="relative p-6 h-full bg-black/40 backdrop-blur-sm rounded-lg border border-primary/10">
                                                 <blockquote className="space-y-4">
                                                     <p className="text-muted-foreground relative">
-                                                        "{testimonial.quote}"
+                                                        {`"${testimonial.quote}"`}
                                                     </p>
                                                     <footer className="flex items-center space-x-4">
                                                         <div className="relative">
@@ -79,7 +71,9 @@ export function TestimonialsSection() {
                                                         </div>
                                                         <div>
                                                             <div className="font-semibold">{testimonial.author}</div>
-                                                            <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                                                            <div className="text-sm text-muted-foreground">
+                                                                {testimonial.role}
+                                                            </div>
                                                         </div>
                                                     </footer>
                                                 </blockquote>
@@ -95,5 +89,5 @@ export function TestimonialsSection() {
                 </Carousel>
             </div>
         </section>
-    )
+    );
 }
