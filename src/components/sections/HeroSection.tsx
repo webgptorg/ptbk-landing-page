@@ -8,7 +8,7 @@ export function HeroSection() {
             <div className="max-w-3xl space-y-8 relative z-10">
                 {/* added z-10 to put content above grid */}
                 <h1 className="scroll-m-20 text-6xl font-extrabold tracking-tight lg:text-7xl">
-                    Programming in Plain English
+                    Program in Plain English
                 </h1>
                 <p className="text-xl text-muted-foreground">
                     A revolutionary 4th generation language that transforms natural language specifications into
