@@ -5,5 +5,9 @@ export function BackgroundGrid() {
             <div className="absolute h-full w-full backdrop-blur-[100px]" />
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-transparent" />
         </div>
-    )
+    );
 }
+
+/**
+ * TODO: Confusing name - its more like `<HeroSectionBackground/>`
+ */
