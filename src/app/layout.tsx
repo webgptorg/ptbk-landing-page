@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@/components/theme-provider';
 import { BackgroundPattern } from '@/components/ui/background-pattern';
-import { CLAIM } from '@promptbook/core';
+import { CLAIM, NAME } from '@promptbook/core';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
@@ -18,7 +18,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-    title: 'Promptbook',
+    title: NAME,
     description: CLAIM,
 };
 
