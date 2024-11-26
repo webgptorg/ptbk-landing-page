@@ -8,43 +8,20 @@ import { CodeEditor } from '../CodeEditor/CodeEditor';
 
 const PLACEHOLDER_TEXT = spaceTrim(`
 
-    # ✨ Example: Write Hello for a user
+    # ✨ Write Hello
 
-    -   URL \`https://promptbook.studio/examples/hello.book\`
-    -   INPUT PARAMETER \`{yourName}\` Name of the user
-    -   OUTPUT PARAMETER \`{greeting}\` Greeting for the user
-
-    ## Sample of the name
-
-    - SAMPLE
-
-    > Paul
-
-    \`-> {yourName}\`
-
-    ## Sample of the name
-
-    - SAMPLE
-
-    > George
-
-    \`-> {yourName}\`
+    -   INPUT PARAMETER {yourName} Your name
+    -   OUTPUT PARAMETER {letter} Letter for you
 
     ## Writing Greeting
 
-    -   PERSONA Jane, HR professional with prior experience in writing emails
-    -   EXPECT MIN 1 Word
-    -   EXPECT MAX 1 Line
+    -   PERSONA Jane, linguist and computer scientist
+    -   EXPECT MIN 3 Words
+    -   EXPECT MAX 1 Page
+    
+    > Write a letter for {yourName}
 
-    \`\`\`markdown
-    You are writing a greeting for {yourName}.
-
-    ## Rules
-
-    -   Write just the greeting, nothing else
-    \`\`\`
-
-    \`-> {greeting}\`
+    -> {letter}
     
 `);
 
