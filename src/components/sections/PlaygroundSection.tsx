@@ -39,16 +39,14 @@ export function PlaygroundSection() {
                         <div className="relative group">
                             <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-primary/30 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                             <div
-                                style={{ height: 400 }}
                                 className={`
                                     min-h-[400px] font-mono relative bg-black/90 backdrop-blur-sm 
                                     border border-primary/20 rounded-lg  overflow-auto`}
                             >
-                                <CodeEditor
-                                    defaultValue={input}
-                                    onChange={(newValue) => void setInput(newValue)}
-                                    // <- TODO: !!! Connect to Promptbook studio here
-                                    // <- TODO: !!! When changed, prevent user from exiting without publishing
+                                <iframe
+                                    title="✨ Hello Book Miniapp"
+                                    src={`https://promptbook.studio/embed/preview-miniapp`}
+                                    className="min-h-[400px] h-full w-full"
                                 />
                             </div>
                         </div>
