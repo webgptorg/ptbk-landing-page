@@ -15,7 +15,7 @@
             "name": "🩹 Lint fix",
             "command": "npm run lint -- --fix",
             "onlySingle": true,
-            "execute": false
+            "execute": true
         },
         {
             "name": "🧪 Unit tests",
@@ -41,6 +41,12 @@
                 "git push vercel main"
             ],
             "focus": true
+        },
+        {
+            "name": "🚨🧪 Lighthouse report",
+            "command": "npm run test-with-lighthouse",
+            "onlySingle": true,
+            "execute": true
         }
     ]
 }
