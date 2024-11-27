@@ -26,7 +26,6 @@ const PLACEHOLDER_TEXT = spaceTrim(`
 
 export function PlaygroundSection() {
     const [input, setInput] = useState(PLACEHOLDER_TEXT);
-    const [output, setOutput] = useState('');
 
     return (
         <section className="py-24 relative">
