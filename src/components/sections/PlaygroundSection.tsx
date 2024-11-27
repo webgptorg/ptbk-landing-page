@@ -67,7 +67,7 @@ export function PlaygroundSection() {
                             >
                                 <iframe
                                     title="✨ Hello Book Miniapp"
-                                    src={`https://promptbook.studio/miniapps/new`}
+                                    src={`https://promptbook.studio/embed/preview-miniapp`}
                                     className="min-h-[400px] h-full w-full"
                                 />
                             </div>
