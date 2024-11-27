@@ -3,7 +3,6 @@
 import { Separator } from '@/components/ui/separator';
 import { spaceTrim } from '@promptbook/utils';
 import { useState } from 'react';
-import { CodeEditor } from '../CodeEditor/CodeEditor';
 
 const PLACEHOLDER_TEXT = spaceTrim(`
 
@@ -44,8 +43,8 @@ export function PlaygroundSection() {
                                     border border-primary/20 rounded-lg  overflow-auto`}
                             >
                                 <iframe
-                                    title="✨ Hello Book Miniapp"
-                                    src={`https://promptbook.studio/embed/preview-miniapp`}
+                                    title="✨ Book editor"
+                                    src={`https://promptbook.studio/embed/code-miniapp`}
                                     className="min-h-[400px] h-full w-full"
                                 />
                             </div>
@@ -55,7 +54,7 @@ export function PlaygroundSection() {
                     <Separator orientation="vertical" className="h-[400px] bg-primary/20" />
 
                     <div className="flex-1 space-y-2">
-                        <h3 className="text-sm font-medium">Generated App</h3>
+                        <h3 className="text-sm font-medium">Your App</h3>
                         <div className="relative group">
                             <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-primary/50 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                             <div
