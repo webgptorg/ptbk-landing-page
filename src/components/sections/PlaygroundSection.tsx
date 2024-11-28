@@ -42,13 +42,14 @@ export function PlaygroundSection() {
                             <div
                                 className={`
                                     min-h-[400px] font-mono relative bg-black/90 backdrop-blur-sm 
-                                    border border-primary/20 rounded-lg  overflow-auto`}
+                                    border rounded-lg  overflow-auto`}
                             >
                                 <iframe
                                     title="✨ Book editor"
-                                    src={`https://promptbook.studio/embed/code-miniapp`}
+                                    src={`https://promptbook.studio/embed/code-miniapp?integrationId=1239a0ee-02bd-4aa8-98d2-0dc7a2eb2612`}
                                     className="min-h-[400px] h-full w-full"
                                 />
+                                {/* <- TODO: [🎇] This should integrated via SDK not <iframe/> */}
                             </div>
                         </div>
                     </div>
@@ -62,13 +63,14 @@ export function PlaygroundSection() {
                             <div
                                 className={`
                                     min-h-[400px] font-mono relative bg-black/90 backdrop-blur-sm 
-                                    border border-primary/20 rounded-lg  overflow-auto`}
+                                    border rounded-lg  overflow-auto`}
                             >
                                 <iframe
                                     title="✨ Hello Book Miniapp"
                                     src={`https://promptbook.studio/embed/preview-miniapp?integrationId=1239a0ee-02bd-4aa8-98d2-0dc7a2eb2612`}
                                     className="min-h-[400px] h-full w-full"
                                 />
+                                {/* <- TODO: [🎇] This should integrated via SDK not <iframe/> */}
                             </div>
                         </div>
                     </div>
