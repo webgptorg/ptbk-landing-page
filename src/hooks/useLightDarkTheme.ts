@@ -1,5 +1,6 @@
 'use client';
 
+import { $isRunningInBrowser } from '@promptbook/utils';
 import { useTheme } from 'next-themes';
 
 /**
@@ -16,6 +17,10 @@ export function useLightDarkTheme(): 'DARK' | 'LIGHT' {
 
     if (theme === 'light') {
         return 'LIGHT';
+    }
+
+    if (!$isRunningInBrowser()) {
+        return 'DARK'; // <- Note: Default to dark theme on SSR
     }
 
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'DARK' : 'LIGHT';
