@@ -2,8 +2,6 @@
 
 import BackgroundImage from '../../../public/background-ptbk.svg';
 
-console.log('backgroundImage:', BackgroundImage);
-
 export function BackgroundPattern() {
     return (
         <div className="fixed inset-0 -z-50 h-full w-full">
