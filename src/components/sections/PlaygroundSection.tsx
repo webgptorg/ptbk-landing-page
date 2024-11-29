@@ -2,31 +2,6 @@
 
 import { Separator } from '@/components/ui/separator';
 
-/*
-TODO: Remove
-import { spaceTrim } from '@promptbook/utils';
-import { useState } from 'react';
-
-const PLACEHOLDER_TEXT = spaceTrim(`
-
-    # ✨ Hello Book
-
-    -   INPUT PARAMETER {yourName} Your name
-    -   OUTPUT PARAMETER {letter} Letter for you
-
-    ## Writing Greeting
-
-    -   PERSONA Jane, linguist and computer scientist
-    -   EXPECT MIN 3 Words
-    -   EXPECT MAX 1 Page
-    
-    > Write a letter for {yourName}
-
-    -> {letter}
-    
-`);
-*/
-
 export function PlaygroundSection() {
     return (
         <section className="py-24 relative">
@@ -34,7 +9,8 @@ export function PlaygroundSection() {
 
             <div className="container max-w-6xl mx-auto px-6 relative">
                 <h2 className="text-3xl font-bold text-center mb-12">✨ Try It Yourself</h2>
-                <div className="flex gap-8">
+                <div className="flex flex-col md:flex-row gap-8">
+                    {/* The Book Section */}
                     <div className="flex-1 space-y-2">
                         <h3 className="text-sm font-medium">The Book</h3>
                         <div className="relative group">
@@ -42,7 +18,7 @@ export function PlaygroundSection() {
                             <div
                                 className={`
                                     min-h-[400px] font-mono relative bg-black/90 backdrop-blur-sm 
-                                    border rounded-lg  overflow-auto`}
+                                    border rounded-lg overflow-auto`}
                             >
                                 <iframe
                                     title="✨ Book editor"
@@ -54,8 +30,13 @@ export function PlaygroundSection() {
                         </div>
                     </div>
 
-                    <Separator orientation="vertical" className="h-[400px] bg-primary/20" />
+                    {/* Vertical Separator for large screens */}
+                    <Separator
+                        orientation="vertical"
+                        className="hidden md:block h-[400px] bg-primary/20"
+                    />
 
+                    {/* Your App Section */}
                     <div className="flex-1 space-y-2">
                         <h3 className="text-sm font-medium">Your App</h3>
                         <div className="relative group">
@@ -63,7 +44,7 @@ export function PlaygroundSection() {
                             <div
                                 className={`
                                     min-h-[400px] font-mono relative bg-black/90 backdrop-blur-sm 
-                                    border rounded-lg  overflow-auto`}
+                                    border rounded-lg overflow-auto`}
                             >
                                 <iframe
                                     title="✨ Hello Book Miniapp"
