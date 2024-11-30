@@ -1,42 +1,41 @@
 import { Card, CardContent } from '@/components/ui/card';
-import Image from 'next/image';
 
 const testimonials = [
     {
-        quote: "The Book programming language has revolutionized how we integrate LLM applications, cutting development time by 70%.",
-        author: "Senior Backend Engineer",
-        company: "Leading AI Driven Software Agency",
-        avatar: "/avatars/placeholder1.png",
+        quote: 'The Book programming language has revolutionized how we integrate LLM applications, cutting development time by 70%.',
+        author: 'Senior Backend Engineer',
+        company: 'Leading AI Driven Software Agency',
+        avatar: '/avatars/placeholder1.png',
     },
     {
-        quote: "Using Promptbook feels like magic. We describe features in plain English and get working app immediately.",
-        author: "Frontend Developer",
-        company: "Innovative Fintech Startup",
-        avatar: "/avatars/placeholder2.png",
+        quote: 'Using Promptbook feels like magic. We describe features in plain English and get working app immediately.',
+        author: 'Frontend Developer',
+        company: 'Innovative Fintech Startup',
+        avatar: '/avatars/placeholder2.png',
     },
     {
-        quote: "Promptbook has transformed how we design and deploy software with much more personalized content.",
-        author: "Software Architect",
-        company: "Educational Platform Provider",
-        avatar: "/avatars/placeholder3.png",
+        quote: 'Promptbook has transformed how we design and deploy software with much more personalized content.',
+        author: 'Software Architect',
+        company: 'Educational Platform Provider',
+        avatar: '/avatars/placeholder3.png',
     },
     {
-        quote: "The Book language bridges the gap between technical and non-technical teams, making collaboration seamless.",
-        author: "Product Manager",
-        company: "SaaS Collaboration Platform",
-        avatar: "/avatars/placeholder4.png",
+        quote: 'The Book language bridges the gap between technical and non-technical teams, making collaboration seamless.',
+        author: 'Product Manager',
+        company: 'SaaS Collaboration Platform',
+        avatar: '/avatars/placeholder4.png',
     },
     {
         quote: "Promptbook's natural language approach simplifies coding and accelerates project delivery.",
-        author: "Full-Stack Developer",
-        company: "Digital Agency",
-        avatar: "/avatars/placeholder5.png",
+        author: 'Full-Stack Developer',
+        company: 'Digital Agency',
+        avatar: '/avatars/placeholder5.png',
     },
     {
         quote: "Our CI/CD pipelines are now faster and more reliable thanks to Promptbook's automation capabilities.",
-        author: "DevOps Engineer",
-        company: "Enterprise Software Company",
-        avatar: "/avatars/placeholder6.png",
+        author: 'DevOps Engineer',
+        company: 'Enterprise Software Company',
+        avatar: '/avatars/placeholder6.png',
     },
 ];
 
