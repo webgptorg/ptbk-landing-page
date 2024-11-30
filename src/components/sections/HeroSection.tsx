@@ -20,9 +20,15 @@ export function HeroSection() {
                     get what you need.
                 </p>
                 <div className="flex gap-4">
-                    <Button size="lg">Get Started</Button>
+                    <Button size="lg">
+                        <Link href={'https://promptbook.studio/miniapps/create'}>
+                            Get Started
+                        </Link>
+                    </Button>
                     <Button variant="outline" size="lg">
-                        Learn More
+                        <Link href={'https://github.com/webgptorg/book'}>
+                            Learn More
+                        </Link>
                     </Button>
                 </div>
             </div>
