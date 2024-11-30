@@ -7,22 +7,22 @@ import { motion } from 'framer-motion';
 
 const testimonials = [
     {
-        quote: 'This is revolutionizing how we write software. What used to take weeks now takes hours.',
-        author: 'Sarah Chen',
-        role: 'CTO, TechStart',
-        avatar: '/avatar1.png',
+        quote: 'Promptbook helped us save hundreds of hours of repetitive tasks.',
+        author: 'Matěj Bacovský',
+        role: 'Chief Digital Architect, NPI',
+        avatar: './avatar1.jpeg',
     },
     {
-        quote: 'The ability to describe features in plain English and get working code is incredible.',
-        author: 'Michael Rodriguez',
-        role: 'Lead Developer, EnterpriseAI',
-        avatar: '/avatar2.png',
+        quote: 'By enabling programming in your native language, tools like Promptbook are bridging the gap between technology and people.',
+        author: 'Daria Hvížďalová',
+        role: 'Director, AI & Learning, 42 London',
+        avatar: '/avatar2.jpeg',
     },
     {
-        quote: 'This tool has completely transformed our development workflow. Game-changing technology.',
-        author: 'Emily Watson',
-        role: 'Product Manager, InnovateCo',
-        avatar: '/avatar3.png',
+        quote: 'Promptbook transforms programming into a creative process accessible to everyone. As someone passionate about innovation, I see this as a game-changer.',
+        author: 'Tomáš Studeník',
+        role: 'Radical Innovator, Founder & Investor',
+        avatar: '/avatar3.webp',
     },
 ];
 
@@ -33,7 +33,7 @@ export function TestimonialsSection() {
             <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
 
             <div className="container relative">
-                <h2 className="text-3xl font-bold text-center mb-12">What Developers Are Saying</h2>
+                <h2 className="text-3xl font-bold text-center mb-12">What People Are Saying</h2>
 
                 <Carousel
                     opts={{
