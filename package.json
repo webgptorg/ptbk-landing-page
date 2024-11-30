@@ -4,7 +4,7 @@
     "type": "module",
     "private": true,
     "scripts": {
-        "dev": "next dev",
+        "dev": "npx kill-port 4466 && next dev -p 4466",
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
