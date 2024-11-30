@@ -24,6 +24,7 @@
         "@types/jest": "^29.5.14",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.1",
+        "configchecker": "1.5.84",
         "embla-carousel-react": "^8.5.1",
         "framer-motion": "^11.11.17",
         "jest": "^29.7.0",
