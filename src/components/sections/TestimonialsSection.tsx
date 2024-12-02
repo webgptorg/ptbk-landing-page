@@ -23,19 +23,19 @@ const NOT_APPROVED_TESTIMONIALS: Array<{
         quote: 'Promptbook helped us save hundreds of hours of repetitive tasks.',
         author: 'Matěj Bacovský',
         role: 'Chief Digital Architect, NPI',
-        avatar: './avatar1.jpeg',
+        avatar: './people/matej-bacovsky.jpeg',
     },
     {
         quote: 'By enabling programming in your native language, tools like Promptbook are bridging the gap between technology and people.',
         author: 'Daria Hvížďalová',
         role: 'Director, AI & Learning, 42 London',
-        avatar: '/avatar2.jpeg',
+        avatar: '/people/daria-hvizdalova.jpeg',
     },
     {
         quote: 'Promptbook transforms programming into a creative process accessible to everyone. As someone passionate about innovation, I see this as a game-changer.',
         author: 'Tomáš Studeník',
         role: 'Radical Innovator, Founder & Investor',
-        avatar: '/avatar3.webp',
+        avatar: '/people/tomas-studenik.webp',
     },
 ];
 
