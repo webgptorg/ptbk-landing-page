@@ -3,9 +3,22 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { useTestMode } from '@/hooks/useTestMode';
 import { motion } from 'framer-motion';
 
-const testimonials = [
+const APPROVED_TESTIMONIALS: Array<{
+    quote: string;
+    author: string;
+    role: string;
+    avatar: string;
+}> = [];
+
+const NOT_APPROVED_TESTIMONIALS: Array<{
+    quote: string;
+    author: string;
+    role: string;
+    avatar: string;
+}> = [
     {
         quote: 'Promptbook helped us save hundreds of hours of repetitive tasks.',
         author: 'Matěj Bacovský',
@@ -27,6 +40,9 @@ const testimonials = [
 ];
 
 export function TestimonialsSection() {
+    const isTestMode = useTestMode();
+    const testimonials = [...APPROVED_TESTIMONIALS, ...(!isTestMode ? [] : NOT_APPROVED_TESTIMONIALS)];
+
     return (
         <section className="py-24 relative overflow-hidden">
             {/* Section background */}
