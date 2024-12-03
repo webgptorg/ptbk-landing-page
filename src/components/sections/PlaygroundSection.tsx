@@ -51,6 +51,7 @@ const PlaygroundItem = ({ bookUrl, appUrl }: PlaygroundItemProps) => (
                         src={bookUrl}
                         className="min-h-[400px] h-full w-full"
                     />
+                    {/* <- TODO: [🎇] This should integrated via SDK not <iframe/> */}
                 </div>
             </div>
         </div>
@@ -72,6 +73,7 @@ const PlaygroundItem = ({ bookUrl, appUrl }: PlaygroundItemProps) => (
                         src={appUrl}
                         className="min-h-[400px] h-full w-full"
                     />
+                    {/* <- TODO: [🎇] This should integrated via SDK not <iframe/> */}
                 </div>
             </div>
         </div>
