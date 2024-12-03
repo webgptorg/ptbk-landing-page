@@ -5,6 +5,7 @@ import { HeroSection } from '@/components/sections/HeroSection';
 import { PlaygroundSection } from '@/components/sections/PlaygroundSection';
 import { SocialProofSection } from '@/components/sections/SocialProofSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
+import { FAQSection } from '@/components/sections/FAQSection';
 import { Logo } from '@/components/ui/logo';
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
                 <TestimonialsSection />
                 <FeaturesSection />
                 <SocialProofSection />
+                <FAQSection />
                 <Footer />
             </main>
         </div>
