@@ -1,15 +1,10 @@
 'use client';
 
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from "@/components/ui/accordion";
+import remarkGfm from 'remark-gfm';
 
 interface FAQItem {
     id: string;
@@ -24,7 +19,7 @@ const formatDate = (dateString: string) => {
     return date.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
-        day: 'numeric'
+        day: 'numeric',
     });
 };
 
@@ -46,8 +41,9 @@ export function FAQSection() {
                 const data = await response.json();
 
                 // Sort FAQs by last updated date to show newest first
-                const sortedFaqs = data.faqs.sort((a: FAQItem, b: FAQItem) =>
-                    new Date(b.lastUpdated || '').getTime() - new Date(a.lastUpdated || '').getTime()
+                const sortedFaqs = data.faqs.sort(
+                    (a: FAQItem, b: FAQItem) =>
+                        new Date(b.lastUpdated || '').getTime() - new Date(a.lastUpdated || '').getTime(),
                 );
 
                 setFaqs(sortedFaqs);
@@ -82,9 +78,7 @@ export function FAQSection() {
             <section className="py-24 relative">
                 <div className="container max-w-4xl mx-auto px-6">
                     <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
-                    <div className="text-center text-red-500 p-4 rounded-lg bg-red-50 dark:bg-red-900/10">
-                        {error}
-                    </div>
+                    <div className="text-center text-red-500 p-4 rounded-lg bg-red-50 dark:bg-red-900/10">{error}</div>
                 </div>
             </section>
         );
@@ -125,12 +119,10 @@ export function FAQSection() {
                                             rehypePlugins={[rehypeRaw]}
                                             components={{
                                                 // Custom styling for list items to ensure proper indentation
-                                                ul: ({node, ...props}) => (
+                                                ul: ({ /*node,*/ ...props }) => (
                                                     <ul className="list-disc pl-4 space-y-2" {...props} />
                                                 ),
-                                                li: ({node, ...props}) => (
-                                                    <li className="ml-2" {...props} />
-                                                )
+                                                li: ({ /*node,*/ ...props }) => <li className="ml-2" {...props} />,
                                             }}
                                         >
                                             {faq.answer}
