@@ -6,7 +6,14 @@ import { useTestMode } from '@/hooks/useTestMode';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-const APPROVED_TESTIMONIALS = [
+interface Testimonial {
+    quote: string;
+    author: string;
+    role: string;
+    avatar: string;
+}
+
+const APPROVED_TESTIMONIALS: Array<Testimonial> = [
     {
         quote: 'Promptbook transforms programming into a creative process accessible to everyone. As someone passionate about innovation, I see this as a game-changer.',
         author: 'Tomáš Studeník',
@@ -15,7 +22,7 @@ const APPROVED_TESTIMONIALS = [
     }
 ];
 
-const NOT_APPROVED_TESTIMONIALS = [
+const NOT_APPROVED_TESTIMONIALS: Array<Testimonial> = [
     {
         quote: 'Promptbook helped us save hundreds of hours of repetitive tasks.',
         author: 'Matěj Bacovský',
