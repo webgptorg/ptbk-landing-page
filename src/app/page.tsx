@@ -7,6 +7,7 @@ import { SocialProofSection } from '@/components/sections/SocialProofSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { FAQSection } from '@/components/sections/FAQSection';
 import { Logo } from '@/components/ui/logo';
+import { AboutUsSection } from "@/components/sections/AboutUsSection";
 
 export default function Home() {
     return (
@@ -19,6 +20,7 @@ export default function Home() {
                 <TestimonialsSection />
                 <FeaturesSection />
                 <SocialProofSection />
+                <AboutUsSection />
                 <FAQSection />
                 <Footer />
             </main>
