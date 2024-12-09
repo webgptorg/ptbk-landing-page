@@ -19,7 +19,13 @@ const APPROVED_TESTIMONIALS: Array<Testimonial> = [
         author: 'Tomáš Studeník',
         role: 'Radical Innovator, Founder & Investor',
         avatar: '/people/tomas-studenik.jpg',
-    }
+    },
+    {
+        quote: 'By enabling programming in your native language, tools like Promptbook are bridging the gap between technology and people.',
+        author: 'Daria Hvížďalová',
+        role: 'Director, AI & Learning, 42 London',
+        avatar: '/people/daria-hvizdalova.jpeg',
+    },
 ];
 
 const NOT_APPROVED_TESTIMONIALS: Array<Testimonial> = [
@@ -29,12 +35,6 @@ const NOT_APPROVED_TESTIMONIALS: Array<Testimonial> = [
         role: 'Chief Digital Architect, NPI',
         avatar: '/people/matej-bacovsky.jpeg',
     },
-    {
-        quote: 'By enabling programming in your native language, tools like Promptbook are bridging the gap between technology and people.',
-        author: 'Daria Hvížďalová',
-        role: 'Director, AI & Learning, 42 London',
-        avatar: '/people/daria-hvizdalova.jpeg',
-    }
 ];
 
 export function TestimonialsSection() {
