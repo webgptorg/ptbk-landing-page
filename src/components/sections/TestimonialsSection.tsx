@@ -60,7 +60,7 @@ export function TestimonialsSection() {
                     className="w-full max-w-4xl mx-auto"
                 >
                     <CarouselContent className={isSingleTestimonial ? 'justify-center' : ''}>
-                        <Shuffle seed={`testimonials-${process.env.NEXT_DEPLOYMENT_ID}-${new Date().getUTCMinutes()}`}>
+                        <Shuffle seed={`testimonials-${process.env.VERCEL_DEPLOYMENT_ID}}`}>
                             {testimonials.map((testimonial, index) => (
                                 <CarouselItem
                                     key={index}
