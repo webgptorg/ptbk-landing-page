@@ -1,36 +1,32 @@
 'use client';
 
+import { Card, CardContent } from '@/components/ui/card';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Separator } from '@/components/ui/separator';
-import { Card, CardContent } from "@/components/ui/card";
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel";
+
+const PTBKIO_INTEGRATION_ID = '1239a0ee-02bd-4aa8-98d2-0dc7a2eb2612';
+//     <- TODO: Transfer to env variables
+
+let globalId = 0;
+
+function getSampleConfiguration(title: string, bookName: string | null) {
+    const id = globalId++;
+
+    return {
+        id,
+        title,
+        bookUrl: `https://promptbook.studio/embed/code-miniapp?integrationId=${PTBKIO_INTEGRATION_ID}&book=miniapps-collection/${bookName}`,
+        appUrl: `https://promptbook.studio/embed/preview-miniapp?integrationId=${PTBKIO_INTEGRATION_ID}&book=miniapps-collection/${bookName}`,
+    };
+}
 
 // Configuration for playground examples
 const PLAYGROUND_EXAMPLES = [
-    {
-        id: 1,
-        title: "Basic Example",
-        bookUrl: "https://promptbook.studio/embed/code-miniapp?integrationId=1239a0ee-02bd-4aa8-98d2-0dc7a2eb2612",
-        appUrl: "https://promptbook.studio/embed/preview-miniapp?integrationId=1239a0ee-02bd-4aa8-98d2-0dc7a2eb2612"
-    },
-    {
-        id: 2,
-        title: "Advanced Example",
-        bookUrl: "https://promptbook.studio/embed/code-miniapp?integrationId=1239a0ee-02bd-4aa8-98d2-0dc7a2eb2612",
-        appUrl: "https://promptbook.studio/embed/preview-miniapp?integrationId=1239a0ee-02bd-4aa8-98d2-0dc7a2eb2612"
-    },
-    {
-        id: 3,
-        title: "More Advanced Example",
-        bookUrl: "https://promptbook.studio/embed/code-miniapp?integrationId=1239a0ee-02bd-4aa8-98d2-0dc7a2eb2612",
-        appUrl: "https://promptbook.studio/embed/preview-miniapp?integrationId=1239a0ee-02bd-4aa8-98d2-0dc7a2eb2612"
-    },
-    // Add more examples as needed
+    getSampleConfiguration('Basic Example', 'new'),
+    // TODO: [✨] Make translator sample
+    getSampleConfiguration('Chat', 'pavol-hejny-chat'), // <- TODO: [✨] Change from Pavol's chat to Promptbook's chat
+    getSampleConfiguration('Sheets processing', 'sheets-sample-email'),
+    // TODO: [✨] Make knowledgebase sample
 ];
 
 interface PlaygroundItemProps {
@@ -46,21 +42,14 @@ const PlaygroundItem = ({ bookUrl, appUrl }: PlaygroundItemProps) => (
             <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-primary/30 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                 <div className="min-h-[400px] font-mono relative bg-black/90 backdrop-blur-sm border rounded-lg overflow-auto">
-                    <iframe
-                        title="✨ Book editor"
-                        src={bookUrl}
-                        className="min-h-[400px] h-full w-full"
-                    />
+                    <iframe title="✨ Book editor" src={bookUrl} className="min-h-[400px] h-full w-full" />
                     {/* <- TODO: [🎇] This should integrated via SDK not <iframe/> */}
                 </div>
             </div>
         </div>
 
         {/* Vertical Separator for large screens */}
-        <Separator
-            orientation="vertical"
-            className="hidden md:block h-[400px] bg-primary/20"
-        />
+        <Separator orientation="vertical" className="hidden md:block h-[400px] bg-primary/20" />
 
         {/* Your App Section */}
         <div className="flex-1 space-y-2">
@@ -68,11 +57,7 @@ const PlaygroundItem = ({ bookUrl, appUrl }: PlaygroundItemProps) => (
             <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-primary/50 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                 <div className="min-h-[400px] font-mono relative bg-black/90 backdrop-blur-sm border rounded-lg overflow-auto">
-                    <iframe
-                        title="✨ Hello Book Miniapp"
-                        src={appUrl}
-                        className="min-h-[400px] h-full w-full"
-                    />
+                    <iframe title="✨ Hello Book Miniapp" src={appUrl} className="min-h-[400px] h-full w-full" />
                     {/* <- TODO: [🎇] This should integrated via SDK not <iframe/> */}
                 </div>
             </div>
@@ -95,10 +80,7 @@ export function PlaygroundSection() {
                                 <Card>
                                     <CardContent className="p-6">
                                         <h3 className="text-xl font-semibold mb-6 text-center">{example.title}</h3>
-                                        <PlaygroundItem
-                                            bookUrl={example.bookUrl}
-                                            appUrl={example.appUrl}
-                                        />
+                                        <PlaygroundItem bookUrl={example.bookUrl} appUrl={example.appUrl} />
                                     </CardContent>
                                 </Card>
                             </CarouselItem>
