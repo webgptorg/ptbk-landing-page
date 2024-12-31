@@ -28,7 +28,7 @@ const PLAYGROUND_EXAMPLES = [
     getSampleConfiguration('Sheets', 'sheets'),
     getSampleConfiguration('Generator', 'generator'),
 
-    // TODO: [✨] Make knowledgebase sample
+    // TODO: [✨] Make knowledgebase samples
 ];
 
 interface PlaygroundItemProps {
