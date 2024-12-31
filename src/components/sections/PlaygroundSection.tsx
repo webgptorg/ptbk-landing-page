@@ -15,17 +15,19 @@ function getSampleConfiguration(title: string, bookName: string | null) {
     return {
         id,
         title,
-        bookUrl: `https://promptbook.studio/embed/code-miniapp?integrationId=${PTBKIO_INTEGRATION_ID}&book=miniapps-collection/${bookName}`,
-        appUrl: `https://promptbook.studio/embed/preview-miniapp?integrationId=${PTBKIO_INTEGRATION_ID}&book=miniapps-collection/${bookName}`,
+        bookUrl: `https://promptbook.studio/embed/code-miniapp?integrationId=${PTBKIO_INTEGRATION_ID}&book=miniapps-collection/${bookName}-template`,
+        appUrl: `https://promptbook.studio/embed/preview-miniapp?integrationId=${PTBKIO_INTEGRATION_ID}&book=miniapps-collection/${bookName}-template`,
     };
 }
 
 // Configuration for playground examples
 const PLAYGROUND_EXAMPLES = [
-    getSampleConfiguration('Basic Example', 'new'),
-    // TODO: [✨] Make translator sample
-    getSampleConfiguration('Chat', 'pavol-hejny-chat'), // <- TODO: [✨] Change from Pavol's chat to Promptbook's chat
-    getSampleConfiguration('Sheets processing', 'sheets-sample-email'),
+    getSampleConfiguration('Chat', 'chatbot'),
+    getSampleConfiguration('Basic Example', 'generic'),
+    getSampleConfiguration('Translator', 'translator'),
+    getSampleConfiguration('Sheets', 'sheets'),
+    getSampleConfiguration('Generator', 'generator'),
+
     // TODO: [✨] Make knowledgebase sample
 ];
 
