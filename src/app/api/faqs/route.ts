@@ -44,7 +44,9 @@ async function fetchGitHubDiscussions(): Promise<GitHubDiscussion[]> {
 
     const data = await response.json();
 
-    if (data.status !== '200') {
+    console.log('GitHub Discussions:', { data });
+
+    if (typeof data.data === 'undefined') {
         throw new Error(
             spaceTrim(
                 (block) => `
