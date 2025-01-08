@@ -1,6 +1,7 @@
 'use client';
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { spaceTrim } from '@promptbook/utils';
 import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
@@ -35,10 +36,12 @@ export function FAQSection() {
             try {
                 setIsLoading(true);
                 const response = await fetch('/api/faqs');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch FAQs');
-                }
+
                 const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to fetch FAQs');
+                }
 
                 // Sort FAQs by last updated date to show newest first
                 const sortedFaqs = data.faqs.sort(
@@ -47,9 +50,21 @@ export function FAQSection() {
                 );
 
                 setFaqs(sortedFaqs);
-            } catch (err) {
-                setError('Failed to load FAQs. Please try again later.');
-                console.error('Error loading FAQs:', err);
+            } catch (error) {
+                if (!(error instanceof Error)) {
+                    throw error;
+                }
+
+                setError(
+                    spaceTrim(
+                        (block) => `
+                            Failed to load FAQs. Please try again later.
+                            
+                            ${block(error.message)}
+                    `,
+                    ),
+                );
+                console.error('Error loading FAQs:', error);
             } finally {
                 setIsLoading(false);
             }
