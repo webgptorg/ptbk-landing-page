@@ -1,42 +1,35 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Separator } from '@/components/ui/separator';
+import { getBookTemplates } from '@promptbook/templates';
+import { titleToName } from '@promptbook/utils';
+import Link from 'next/link';
 
 const PTBKIO_INTEGRATION_ID = '1239a0ee-02bd-4aa8-98d2-0dc7a2eb2612';
 //     <- TODO: Transfer to env variables
 
-let globalId = 0;
-
-function getSampleConfiguration(title: string, bookName: string | null) {
-    const id = globalId++;
+// Configuration for playground examples
+const PLAYGROUND_EXAMPLES = getBookTemplates().map((pipeline, index) => {
+    const book = `miniapps-collection/${titleToName(pipeline.title)}-${pipeline.formfactorName.toLowerCase()}-template`;
 
     return {
-        id,
-        title,
-        bookUrl: `https://promptbook.studio/embed/code-miniapp?integrationId=${PTBKIO_INTEGRATION_ID}&book=miniapps-collection/${bookName}-template`,
-        appUrl: `https://promptbook.studio/embed/preview-miniapp?integrationId=${PTBKIO_INTEGRATION_ID}&book=miniapps-collection/${bookName}-template`,
+        id: index,
+        title: pipeline.title,
+        fullStudioUrl: `https://promptbook.studio/miniapp/new?book=${book}`,
+        codeUrl: `https://promptbook.studio/embed/code-miniapp?integrationId=${PTBKIO_INTEGRATION_ID}&book=${book}`,
+        previewUrl: `https://promptbook.studio/embed/preview-miniapp?integrationId=${PTBKIO_INTEGRATION_ID}&book=${book}`,
     };
-}
-
-// Configuration for playground examples
-const PLAYGROUND_EXAMPLES = [
-    getSampleConfiguration('Chat', 'chatbot'),
-    getSampleConfiguration('Basic Example', 'generic'),
-    getSampleConfiguration('Translator', 'translator'),
-    getSampleConfiguration('Sheets', 'sheets'),
-    getSampleConfiguration('Generator', 'generator'),
-
-    // TODO: [✨] Make knowledgebase samples
-];
+});
 
 interface PlaygroundItemProps {
-    bookUrl: string;
-    appUrl: string;
+    codeUrl: string;
+    previewUrl: string;
 }
 
-const PlaygroundItem = ({ bookUrl, appUrl }: PlaygroundItemProps) => (
+const PlaygroundItem = ({ codeUrl, previewUrl }: PlaygroundItemProps) => (
     <div className="flex flex-col md:flex-row gap-8 w-full">
         {/* The Book Section */}
         <div className="flex-1 space-y-2">
@@ -44,7 +37,7 @@ const PlaygroundItem = ({ bookUrl, appUrl }: PlaygroundItemProps) => (
             <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-primary/30 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                 <div className="min-h-[400px] font-mono relative bg-black/90 backdrop-blur-sm border rounded-lg overflow-auto">
-                    <iframe title="✨ Book editor" src={bookUrl} className="min-h-[400px] h-full w-full" />
+                    <iframe title="✨ Book editor" src={codeUrl} className="min-h-[400px] h-full w-full" />
                     {/* <- TODO: [🎇] This should integrated via SDK not <iframe/> */}
                 </div>
             </div>
@@ -59,7 +52,7 @@ const PlaygroundItem = ({ bookUrl, appUrl }: PlaygroundItemProps) => (
             <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-primary/50 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                 <div className="min-h-[400px] font-mono relative bg-black/90 backdrop-blur-sm border rounded-lg overflow-auto">
-                    <iframe title="✨ Hello Book Miniapp" src={appUrl} className="min-h-[400px] h-full w-full" />
+                    <iframe title="✨ Hello Book Miniapp" src={previewUrl} className="min-h-[400px] h-full w-full" />
                     {/* <- TODO: [🎇] This should integrated via SDK not <iframe/> */}
                 </div>
             </div>
@@ -82,7 +75,13 @@ export function PlaygroundSection() {
                                 <Card>
                                     <CardContent className="p-6">
                                         <h3 className="text-xl font-semibold mb-6 text-center">{example.title}</h3>
-                                        <PlaygroundItem bookUrl={example.bookUrl} appUrl={example.appUrl} />
+                                        <PlaygroundItem codeUrl={example.codeUrl} previewUrl={example.previewUrl} />
+
+                                        <br />
+                                        <Button size="lg">
+                                            <Link href={example.fullStudioUrl}>◳ Open in Studio</Link>
+                                        </Button>
+                                        {/* <- TODO: @JorgeSquared Design better */}
                                     </CardContent>
                                 </Card>
                             </CarouselItem>
