@@ -5,7 +5,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Separator } from '@/components/ui/separator';
 import { getBookTemplates } from '@promptbook/templates';
-import { titleToName } from '@promptbook/utils';
 import Link from 'next/link';
 
 const PTBKIO_INTEGRATION_ID = '1239a0ee-02bd-4aa8-98d2-0dc7a2eb2612';
@@ -13,7 +12,10 @@ const PTBKIO_INTEGRATION_ID = '1239a0ee-02bd-4aa8-98d2-0dc7a2eb2612';
 
 // Configuration for playground examples
 const PLAYGROUND_EXAMPLES = getBookTemplates().map((pipeline, index) => {
-    const book = `miniapps-collection/${titleToName(pipeline.title)}-${pipeline.formfactorName.toLowerCase()}-template`;
+
+
+    const bookFilename = pipeline.pipelineUrl!.split('/').pop();
+    const book = `miniapps-collection/${bookFilename}`;
 
     return {
         id: index,
