@@ -12,9 +12,7 @@ const PTBKIO_INTEGRATION_ID = '1239a0ee-02bd-4aa8-98d2-0dc7a2eb2612';
 
 // Configuration for playground examples
 const PLAYGROUND_EXAMPLES = getBookTemplates().map((pipeline, index) => {
-
-
-    const bookFilename = pipeline.pipelineUrl!.split('/').pop();
+    const bookFilename = pipeline.pipelineUrl.split('/').pop();
     const book = `miniapps-collection/${bookFilename}`;
 
     return {
