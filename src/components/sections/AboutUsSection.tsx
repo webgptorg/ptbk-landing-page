@@ -1,8 +1,8 @@
 'use client';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 interface TeamMember {
     name: string;
@@ -16,14 +16,14 @@ interface TeamMember {
 const TEAM_MEMBERS: TeamMember[] = [
     {
         name: "Pavol Hejný",
-        role: "Founder",
+        role: "CTO & Co-founder",
         bio: "AI technology innovator and creator of Promptbook",
         image: "/people/pavol-hejny.jpg",
         link: "https://www.pavolhejny.com/"
     },
     {
         name: "Jiří Jahn",
-        role: "Co-founder",
+        role: "CEO & Co-founder",
         bio: "AI enthusiast and developer",
         image: "/people/jiri-jahn.jpg",
         imagePosition: "center -10px",  // Adjust this value to move the image down
@@ -33,7 +33,7 @@ const TEAM_MEMBERS: TeamMember[] = [
 
 export function AboutUsSection() {
     return (
-        <section className="py-24 relative">
+        <section id="about-us" className="py-24 relative">
             <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
 
             <div className="container max-w-6xl mx-auto px-6 relative">

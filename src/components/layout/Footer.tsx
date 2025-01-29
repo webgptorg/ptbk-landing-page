@@ -38,8 +38,6 @@ export function Footer() {
                             <li>
                                 <a
                                     href="https://promptbook.studio/miniapps/new"
-                                    // <- TODO: Some specific URL for examples
-
                                     className="text-muted-foreground hover:text-foreground"
                                 >
                                     Examples
@@ -55,29 +53,22 @@ export function Footer() {
                             <li>
                                 <a
                                     href="https://or-justice-cz.translate.goog/ias/ui/rejstrik-firma.vysledky?subjektId=1223693&typ=UPLNY&_x_tr_sl=cs&_x_tr_tl=en&_x_tr_hl=en-US&_x_tr_pto=wapp"
-                                    //href="https://or.justice.cz/ias/ui/rejstrik-firma.vysledky?subjektId=1223693&typ=UPLNY"
-
                                     className="text-muted-foreground hover:text-foreground"
                                 >
                                     AI Web, LLC
-                                    {/* <- Note: It is "AI Web s.r.o." but for most visitors its usefull to have translation */}
                                 </a>
                             </li>
                             <li>
                                 <a
-                                    href="#!!!"
-                                    // <- TODO: Scroll to section about us
+                                    href="#about-us"
                                     className="text-muted-foreground hover:text-foreground"
                                 >
                                     About Us
                                 </a>
                             </li>
-
                             <li>
                                 <a
                                     href="#!!!"
-                                    // <- TODO: Establish a engineering english bloc, maybe on top of Promptujeme.cz or blob.pavolhejny.com
-                                    //          + add this blog to https://github.com/webgptorg/book/blob/main/SIGNPOST.md
                                     className="text-muted-foreground hover:text-foreground"
                                 >
                                     Blog
@@ -141,7 +132,6 @@ export function Footer() {
                         className="h-32 w-auto"
                     />
                 </div>
-
             </div>
         </footer>
     );
