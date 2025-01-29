@@ -133,6 +133,15 @@ export function Footer() {
                         All rights reserved.
                     </p>
                 </div>
+
+                <div className="flex justify-center mt-8">
+                    <img
+                        src="/sponsors/CI-Technology-Incubation.png"
+                        alt="Our Sponsor"
+                        className="h-32 w-auto"
+                    />
+                </div>
+
             </div>
         </footer>
     );
