@@ -133,7 +133,7 @@ export function Footer() {
             <p className="text-center text-sm text-muted-foreground mt-4 max-w-lg">
             This project was implemented with funding from the national budget
             <br />
-            via the Ministry of Industry and Trade of the Czech Republic within the CzechInvest Technology Incubation programme
+            via the Ministry of Industry and Trade of the Czech Republic within the CzechInvest Technology Incubation programme.
           </p>
           </div>
         </div>
