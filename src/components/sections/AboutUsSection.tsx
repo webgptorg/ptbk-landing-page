@@ -23,7 +23,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     },
     {
         name: "Jiří Jahn",
-        role: "CEO & Co-founder",
+        role: "Chief Idea Maker & Consultant",
         bio: "AI enthusiast and developer",
         image: "/people/jiri-jahn.jpg",
         imagePosition: "center -10px",  // Adjust this value to move the image down
