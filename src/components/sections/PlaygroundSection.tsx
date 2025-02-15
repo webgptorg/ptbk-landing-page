@@ -37,12 +37,12 @@ const PlaygroundItem = ({ codeUrl, previewUrl }: PlaygroundItemProps) => (
             <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-primary/30 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                 <div className="min-h-[400px] font-mono relative bg-black/90 backdrop-blur-sm border rounded-lg overflow-auto">
-                    <iframe 
-                        title="✨ Book editor" 
-                        src={codeUrl} 
+                    <iframe
+                        title="✨ Book editor"
+                        src={codeUrl}
                         className="min-h-[400px] h-full w-full"
                         allow="cross-origin-isolated"
-                        crossOrigin="anonymous"
+                        cross-origin="anonymous"
                         loading="lazy"
                     />
                     {/* <- TODO: [🎇] This should integrated via SDK not <iframe/> */}
@@ -59,12 +59,12 @@ const PlaygroundItem = ({ codeUrl, previewUrl }: PlaygroundItemProps) => (
             <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-primary/50 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                 <div className="min-h-[400px] font-mono relative bg-black/90 backdrop-blur-sm border rounded-lg overflow-auto">
-                    <iframe 
-                        title="✨ Hello Book Miniapp" 
-                        src={previewUrl} 
+                    <iframe
+                        title="✨ Hello Book Miniapp"
+                        src={previewUrl}
                         className="min-h-[400px] h-full w-full"
                         allow="cross-origin-isolated"
-                        crossOrigin="anonymous"
+                        cross-origin="anonymous"
                         loading="lazy"
                     />
                     {/* <- TODO: [🎇] This should integrated via SDK not <iframe/> */}
