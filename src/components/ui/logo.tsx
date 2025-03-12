@@ -1,24 +1,25 @@
 'use client';
 
 import { useLightDarkTheme } from '@/hooks/useLightDarkTheme';
-import { LOGO_DARK_SRC, LOGO_LIGHT_SRC } from '@promptbook/core';
+// import { LOGO_DARK_SRC, LOGO_LIGHT_SRC } from '@promptbook/core';
+import Image, { StaticImageData } from 'next/image';
+import logoBlue from '../../../public/logo/logo-blue-transparent-1024.png';
+import logoWhite from '../../../public/logo/logo-white-transparent-1024.png';
 
 export function Logo() {
     const theme = useLightDarkTheme();
 
+    let logo: StaticImageData;
+
+    if (theme === 'DARK') {
+        logo = logoWhite;
+    } else {
+        logo = logoBlue;
+    }
+
     return (
         <div className="flex justify-center items-center h-full">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-                src={
-                    {
-                        LOGO_DARK_SRC,
-                        LOGO_LIGHT_SRC,
-                    }[`LOGO_${theme}_SRC`]
-                }
-                className="w-20 h-auto"
-                alt="Logo"
-            />
+            <Image src={logo} height={111} alt="Logo" />
         </div>
     );
 }
