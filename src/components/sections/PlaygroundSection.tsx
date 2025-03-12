@@ -11,18 +11,25 @@ const PTBKIO_INTEGRATION_ID = '1239a0ee-02bd-4aa8-98d2-0dc7a2eb2612';
 //     <- TODO: Transfer to env variables
 
 // Configuration for playground examples
-const PLAYGROUND_EXAMPLES = getBookTemplates().map((pipeline, index) => {
-    const bookFilename = pipeline.pipelineUrl.split('/').pop();
-    const book = `miniapps-collection/${bookFilename}`;
+const PLAYGROUND_EXAMPLES = getBookTemplates()
+    .filter(
+        ({ pipelineUrl }) =>
+            pipelineUrl.includes('/chatbot.book') ||
+            pipelineUrl.includes('/corrector.book') ||
+            pipelineUrl.includes('/sheets.book'),
+    )
+    .map((pipeline, index) => {
+        const bookFilename = pipeline.pipelineUrl.split('/').pop();
+        const book = `miniapps-collection/${bookFilename}`;
 
-    return {
-        id: index,
-        title: pipeline.title,
-        fullStudioUrl: `https://promptbook.studio/miniapp/new?book=${book}`,
-        codeUrl: `https://promptbook.studio/embed/code-miniapp?integrationId=${PTBKIO_INTEGRATION_ID}&book=${book}`,
-        previewUrl: `https://promptbook.studio/embed/preview-miniapp?integrationId=${PTBKIO_INTEGRATION_ID}&book=${book}`,
-    };
-});
+        return {
+            id: index,
+            title: pipeline.title,
+            fullStudioUrl: `https://promptbook.studio/miniapp/new?book=${book}`,
+            codeUrl: `https://promptbook.studio/embed/code-miniapp?integrationId=${PTBKIO_INTEGRATION_ID}&book=${book}`,
+            previewUrl: `https://promptbook.studio/embed/preview-miniapp?integrationId=${PTBKIO_INTEGRATION_ID}&book=${book}`,
+        };
+    });
 
 interface PlaygroundItemProps {
     codeUrl: string;
