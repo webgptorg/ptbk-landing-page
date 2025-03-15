@@ -8,7 +8,7 @@ import { PlaygroundSection } from '@/components/sections/PlaygroundSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { Logo } from '@/components/ui/logo';
 
-export default function Home() {
+export default function HomePage() {
     return (
         <div className="min-h-screen">
             <Header />

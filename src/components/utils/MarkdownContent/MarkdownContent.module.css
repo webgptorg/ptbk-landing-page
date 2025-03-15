@@ -1,0 +1,76 @@
+.MarkdownContent {
+    /*/
+    outline: 1px dotted #e00e0e !important;
+    /**/
+}
+
+.MarkdownContent h1 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.MarkdownContent h2 {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.MarkdownContent h3 {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.MarkdownContent img {
+    display: inline-block;
+}
+
+.MarkdownContent p {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.MarkdownContent a {
+    text-decoration: underline;
+}
+
+.MarkdownContent table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1rem;
+    border: 1px solid #77777777;
+}
+
+.MarkdownContent th,
+.MarkdownContent td {
+    border: 1px solid #77777777;
+    padding: 8px;
+    text-align: left;
+}
+
+.MarkdownContent th {
+    background-color: #77777777;
+}
+
+.MarkdownContent code {
+    background-color: #77777777;
+}
+
+.MarkdownContent pre {
+    /*/
+    outline: 1px dotted #0ee042 !important;
+    /**/
+
+    background-color: #77777725;
+    border: 1px solid #77777777;
+    padding: 8px;
+}
+
+.MarkdownContent pre code {
+    /*/
+    outline: 1px dotted #0e50e0 !important;
+    /**/
+
+    width: 100%;
+    background-color: transparent;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}

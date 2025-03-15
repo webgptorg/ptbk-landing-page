@@ -3,33 +3,24 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { MarkdownContent } from '../utils/MarkdownContent/MarkdownContent';
 
-export function HeroSection() {
+export function NotFoundSection() {
     return (
         <div className="relative overflow-hidden p-6">
             <BackgroundGrid />
             <div className="max-w-3xl space-y-8 relative z-10">
                 {/* added z-10 to put content above grid */}
-                <h1 className="scroll-m-20 text-6xl font-extrabold tracking-tight lg:text-7xl">
-                    <MarkdownContent>
-                        {`
-                            Program in Plain English
-                        `}
-                    </MarkdownContent>
-                </h1>
+                <h1 className="scroll-m-20 text-6xl font-extrabold tracking-tight lg:text-7xl">Page not found :(</h1>
                 <p className="text-xl text-muted-foreground">
                     <MarkdownContent>
                         {`
-                            A revolutionary [4th generation language](https://github.com/webgptorg/promptbook/discussions/180) that transforms
-                            natural language specifications into functional applications. Write what you want, get what you need.
+                            We can generate a page specifically for you, or better still,
+                            you can find all the information you need on our [home page](https://www.ptbk.io/).
                         `}
                     </MarkdownContent>
                 </p>
                 <div className="flex gap-4">
                     <Button size="lg">
-                        <Link href={'/get-started'}>Get Started</Link>
-                    </Button>
-                    <Button variant="outline" size="lg">
-                        <Link href={'/manifest'}>Learn More</Link>
+                        <Link href={'/'}>Homepage</Link>
                     </Button>
                 </div>
             </div>

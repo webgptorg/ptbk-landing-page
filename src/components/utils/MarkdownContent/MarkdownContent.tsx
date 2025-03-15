@@ -2,6 +2,7 @@ import { spaceTrim } from '@promptbook/utils';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
+import styles from './MarkdownContent.module.css';
 
 type MarkdownContentProps = {
     children: string;
@@ -14,6 +15,7 @@ export function MarkdownContent(props: MarkdownContentProps) {
 
     return (
         <ReactMarkdown
+            className={styles.MarkdownContent}
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw]}
             components={{

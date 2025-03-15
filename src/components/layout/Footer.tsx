@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export function Footer() {
     return (
         <footer className="border-t">
@@ -20,8 +22,18 @@ export function Footer() {
                         <h3 className="font-bold">Product</h3>
                         <ul className="space-y-2 text-sm">
                             <li>
+                                <Link href="/get-started" className="text-muted-foreground hover:text-foreground">
+                                    Get started
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/manifest" className="text-muted-foreground hover:text-foreground">
+                                    Manifest
+                                </Link>
+                            </li>
+                            <li>
                                 <a
-                                    href="https://github.com/webgptorg/book"
+                                    href="https://github.com/webgptorg/promtbook"
                                     className="text-muted-foreground hover:text-foreground"
                                 >
                                     Documentation
@@ -33,14 +45,6 @@ export function Footer() {
                                     className="text-muted-foreground hover:text-foreground"
                                 >
                                     Playground
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://promptbook.studio/miniapps/new"
-                                    className="text-muted-foreground hover:text-foreground"
-                                >
-                                    Examples
                                 </a>
                             </li>
                         </ul>
@@ -59,18 +63,12 @@ export function Footer() {
                                 </a>
                             </li>
                             <li>
-                                <a
-                                    href="#about-us"
-                                    className="text-muted-foreground hover:text-foreground"
-                                >
+                                <a href="#about-us" className="text-muted-foreground hover:text-foreground">
                                     About Us
                                 </a>
                             </li>
                             <li>
-                                <a
-                                    href="#!!!"
-                                    className="text-muted-foreground hover:text-foreground"
-                                >
+                                <a href="#!!!" className="text-muted-foreground hover:text-foreground">
                                     Blog
                                 </a>
                             </li>
@@ -106,12 +104,9 @@ export function Footer() {
                                 </a>
                             </li>
                             <li>
-                                <a
-                                    href="https://github.com/webgptorg/book/blob/main/SIGNPOST.md"
-                                    className="text-muted-foreground hover:text-foreground"
-                                >
+                                <Link href="/contact" className="text-muted-foreground hover:text-foreground">
                                     More
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>
@@ -124,19 +119,16 @@ export function Footer() {
                         All rights reserved.
                     </p>
                 </div>
-          <div className="flex flex-col items-center mt-8">
-            <img
-              src="/sponsors/CI-Technology-Incubation.png"
-              alt="Our Sponsor"
-              className="h-32 w-auto"
-            />
-            <p className="text-center text-sm text-muted-foreground mt-4 max-w-lg">
-            This project was implemented with funding from the national budget
-            <br />
-            via the Ministry of Industry and Trade of the Czech Republic within the CzechInvest Technology Incubation programme.
-          </p>
-          </div>
-        </div>
+                <div className="flex flex-col items-center mt-8">
+                    <img src="/sponsors/CI-Technology-Incubation.png" alt="Our Sponsor" className="h-32 w-auto" />
+                    <p className="text-center text-sm text-muted-foreground mt-4 max-w-lg">
+                        This project was implemented with funding from the national budget
+                        <br />
+                        via the Ministry of Industry and Trade of the Czech Republic within the CzechInvest Technology
+                        Incubation programme.
+                    </p>
+                </div>
+            </div>
         </footer>
     );
 }
