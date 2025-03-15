@@ -39,6 +39,9 @@ const testimonials = [
     },
 ];
 
+/**
+ * Note: [😴] This section is commented out because it has just lorem-ipsum content and also <TestimonialsSection /> has same purpose
+ */
 export function SocialProofSection() {
     return (
         <section className="py-24">

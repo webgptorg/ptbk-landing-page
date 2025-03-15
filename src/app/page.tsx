@@ -1,13 +1,12 @@
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
+import { AboutUsSection } from '@/components/sections/AboutUsSection';
+import { FAQSection } from '@/components/sections/FAQSection';
 import { FeaturesSection } from '@/components/sections/FeaturesSection';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { PlaygroundSection } from '@/components/sections/PlaygroundSection';
-import { SocialProofSection } from '@/components/sections/SocialProofSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
-import { FAQSection } from '@/components/sections/FAQSection';
 import { Logo } from '@/components/ui/logo';
-import { AboutUsSection } from "@/components/sections/AboutUsSection";
 
 export default function Home() {
     return (
@@ -19,7 +18,10 @@ export default function Home() {
                 <PlaygroundSection />
                 <TestimonialsSection />
                 <FeaturesSection />
+                {/*
+                Note: [😴] This section is commented out because it has just lorem-ipsum content and also <TestimonialsSection /> has same purpose
                 <SocialProofSection />
+                */}
                 <AboutUsSection />
                 <FAQSection />
                 <Footer />
