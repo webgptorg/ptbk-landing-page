@@ -3,9 +3,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { spaceTrim } from '@promptbook/utils';
 import { useEffect, useState } from 'react';
-import ReactMarkdown from 'react-markdown';
-import rehypeRaw from 'rehype-raw';
-import remarkGfm from 'remark-gfm';
+import { MarkdownContent } from '../utils/MarkdownContent/MarkdownContent';
 
 interface FAQItem {
     id: string;
@@ -117,7 +115,7 @@ export function FAQSection() {
                             <AccordionTrigger className="text-left hover:no-underline group">
                                 <div className="flex flex-col items-start">
                                     <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">
-                                        {faq.question}
+                                        <MarkdownContent>{faq.question}</MarkdownContent>
                                     </h3>
                                     {faq.lastUpdated && (
                                         <span className="text-xs text-muted-foreground mt-1">
@@ -129,19 +127,7 @@ export function FAQSection() {
                             <AccordionContent>
                                 <div className="pt-4 pb-2 space-y-4">
                                     <div className="prose dark:prose-invert max-w-none">
-                                        <ReactMarkdown
-                                            remarkPlugins={[remarkGfm]}
-                                            rehypePlugins={[rehypeRaw]}
-                                            components={{
-                                                // Custom styling for list items to ensure proper indentation
-                                                ul: ({ /*node,*/ ...props }) => (
-                                                    <ul className="list-disc pl-4 space-y-2" {...props} />
-                                                ),
-                                                li: ({ /*node,*/ ...props }) => <li className="ml-2" {...props} />,
-                                            }}
-                                        >
-                                            {faq.answer}
-                                        </ReactMarkdown>
+                                        <MarkdownContent>{faq.answer}</MarkdownContent>
                                     </div>
 
                                     <a
