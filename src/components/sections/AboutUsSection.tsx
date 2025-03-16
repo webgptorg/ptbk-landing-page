@@ -9,7 +9,8 @@ interface TeamMember {
     role: string;
     bio: string;
     image: string;
-    imagePosition?: string; // Added this property to control image positioning
+    imagePosition?: string;
+    imageBackground?: string;
     link: string;
 }
 
@@ -17,16 +18,19 @@ const TEAM_MEMBERS: TeamMember[] = [
     {
         name: 'Pavol Hejný',
         role: 'CTO & Co-founder',
-        bio: 'AI technology innovator and creator of Promptbook',
-        image: '/people/pavol-hejny-transparent.jpg',
+        bio: 'AI engineer and developer',
+        image: '/people/pavol-hejny-transparent.png',
+        imagePosition: 'center -5%',
+        imageBackground: `linear-gradient(215deg, rgb(255 254 193) 0%, rgb(0 255 149) 100%)`,
         link: 'https://www.pavolhejny.com/',
     },
     {
         name: 'Jiří Jahn',
-        role: 'Idea Maker & Consultant',
-        bio: 'AI enthusiast and developer',
-        image: '/people/jiri-jahn-transparent.jpg',
-        imagePosition: 'center -10px', // Adjust this value to move the image down
+        role: 'CEO & Co-founder',
+        bio: 'Business development and communication',
+        image: '/people/jiri-jahn-transparent.png',
+        imagePosition: 'center 5px',
+        imageBackground: `linear-gradient(145deg, rgb(253, 160, 133) 0%, rgb(0 149 255) 100%)`,
         link: 'https://www.linkedin.com/in/jirkajahn/',
     },
 ];
@@ -53,6 +57,7 @@ export function AboutUsSection() {
                                                 className="object-cover"
                                                 sizes="(max-width: 128px) 100vw, 128px"
                                                 style={{
+                                                    background: member.imageBackground || 'transparent',
                                                     objectPosition: member.imagePosition || 'center',
                                                 }}
                                             />
