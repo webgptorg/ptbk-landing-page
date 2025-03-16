@@ -1,4 +1,6 @@
+import Image from 'next/image';
 import Link from 'next/link';
+import TechnologyIncubation from '../../../public/sponsors/CI-Technology-Incubation.png';
 
 export function Footer() {
     return (
@@ -8,7 +10,7 @@ export function Footer() {
                     {/* Company Info */}
                     <div className="space-y-4">
                         <h3 className="font-bold">
-                            Prompt<b>book</b>
+                            Prompt<b>Book</b>
                         </h3>
                         <p className="text-sm text-muted-foreground">
                             {`It's time for a paradigm shift!`}
@@ -120,7 +122,7 @@ export function Footer() {
                     </p>
                 </div>
                 <div className="flex flex-col items-center mt-8">
-                    <img src="/sponsors/CI-Technology-Incubation.png" alt="Our Sponsor" className="h-32 w-auto" />
+                    <Image src={TechnologyIncubation} alt="Our Sponsor" className="h-32 w-auto" />
                     <p className="text-center text-sm text-muted-foreground mt-4 max-w-lg">
                         This project was implemented with funding from the national budget
                         <br />
