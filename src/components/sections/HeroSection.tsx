@@ -10,7 +10,7 @@ import { randomItem } from '../utils/Shuffle/randomItem';
 export function HeroSection() {
     const seed = useRandomSeed('claim');
     const claim = randomItem(seed, ...CLAIMS);
-    const [headclaim, subclaim] = claim.split('\n');
+    const [headclaim, subclaim] = claim.split('\n', 2);
 
     return (
         <div className="relative overflow-hidden p-6">

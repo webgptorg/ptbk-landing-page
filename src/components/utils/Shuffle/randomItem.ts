@@ -9,6 +9,9 @@ export function randomItem<TItem>(seed: string, ...items: Array<TItem>): TItem {
     }
 
     const random = seedrandom(seed.toString());
+    const randomNumber = random();
 
-    return items[Math.floor(random()) * items.length]!;
+    console.log('!!!', randomNumber);
+
+    return items[Math.floor(randomNumber) * items.length]!;
 }

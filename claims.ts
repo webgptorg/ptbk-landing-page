@@ -11,32 +11,46 @@ export const CLAIMS = [
     It's time for a paradigm shift!
     Future of software is in plain English ✨
     `,
+    /*/
     `
     Xxxx
     Xxxx
     `,
+    /**/
+    /*/
     `
     Xxxx
     Xxxx
     `,
+    /**/
+    /*/
     `
     Xxxx
     Xxxx
     `,
+    /**/
+    /*/
     `
     Xxxx
     Xxxx
     `,
+    /**/
+    /*/
     `
     Xxxx
     Xxxx
     `,
+    /**/
+    /*/
     `
     Xxxx
     Xxxx
     `,
+    /**/
+    /*/
     `
     Xxxx
     Xxxx
     `,
+    /*/
 ];
