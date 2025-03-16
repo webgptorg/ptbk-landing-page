@@ -21,7 +21,7 @@ const TEAM_MEMBERS: TeamMember[] = [
         bio: 'AI engineer and developer',
         image: '/people/pavol-hejny-transparent.png',
         imagePosition: 'center -5%',
-        imageBackground: `linear-gradient(215deg, rgb(255 254 193) 0%, rgb(0 255 149) 100%)`,
+        imageBackground: `linear-gradient(215deg, rgb(253, 160, 133) 0%, rgb(0 149 255) 100%)`,
         link: 'https://www.pavolhejny.com/',
     },
     {

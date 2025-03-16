@@ -10,8 +10,10 @@ export function randomItem<TItem>(seed: string, ...items: Array<TItem>): TItem {
 
     const random = seedrandom(seed.toString());
     const randomNumber = random();
+    const randomIndex = Math.floor(randomNumber * items.length);
+    const randomItem = items[randomIndex]!;
 
-    console.log('!!!', randomNumber);
+    console.log('!!!', { randomNumber, randomIndex, randomItem });
 
-    return items[Math.floor(randomNumber) * items.length]!;
+    return randomItem;
 }
