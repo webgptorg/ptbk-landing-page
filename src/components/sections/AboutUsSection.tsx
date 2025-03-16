@@ -1,34 +1,34 @@
 'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import Image from "next/image";
-import Link from "next/link";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface TeamMember {
     name: string;
     role: string;
     bio: string;
     image: string;
-    imagePosition?: string;  // Added this property to control image positioning
+    imagePosition?: string; // Added this property to control image positioning
     link: string;
 }
 
 const TEAM_MEMBERS: TeamMember[] = [
     {
-        name: "Pavol Hejný",
-        role: "CTO & Co-founder",
-        bio: "AI technology innovator and creator of Promptbook",
-        image: "/people/pavol-hejny.jpg",
-        link: "https://www.pavolhejny.com/"
+        name: 'Pavol Hejný',
+        role: 'CTO & Co-founder',
+        bio: 'AI technology innovator and creator of Promptbook',
+        image: '/people/pavol-hejny-transparent.jpg',
+        link: 'https://www.pavolhejny.com/',
     },
     {
-        name: "Jiří Jahn",
-        role: "Idea Maker & Consultant",
-        bio: "AI enthusiast and developer",
-        image: "/people/jiri-jahn.jpg",
-        imagePosition: "center -10px",  // Adjust this value to move the image down
-        link: "https://www.linkedin.com/in/jirkajahn/"
-    }
+        name: 'Jiří Jahn',
+        role: 'Idea Maker & Consultant',
+        bio: 'AI enthusiast and developer',
+        image: '/people/jiri-jahn-transparent.jpg',
+        imagePosition: 'center -10px', // Adjust this value to move the image down
+        link: 'https://www.linkedin.com/in/jirkajahn/',
+    },
 ];
 
 export function AboutUsSection() {
@@ -41,12 +41,7 @@ export function AboutUsSection() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {TEAM_MEMBERS.map((member) => (
-                        <Link
-                            href={member.link}
-                            key={member.name}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
+                        <Link href={member.link} key={member.name} target="_blank" rel="noopener noreferrer">
                             <Card className="group hover:shadow-lg transition-all duration-300 bg-card/50 backdrop-blur-sm">
                                 <CardHeader className="space-y-4">
                                     <div className="flex justify-center">
@@ -58,7 +53,7 @@ export function AboutUsSection() {
                                                 className="object-cover"
                                                 sizes="(max-width: 128px) 100vw, 128px"
                                                 style={{
-                                                    objectPosition: member.imagePosition || 'center'
+                                                    objectPosition: member.imagePosition || 'center',
                                                 }}
                                             />
                                         </div>
@@ -67,15 +62,11 @@ export function AboutUsSection() {
                                         <CardTitle className="text-2xl group-hover:text-primary transition-colors">
                                             {member.name}
                                         </CardTitle>
-                                        <CardDescription className="text-lg font-medium">
-                                            {member.role}
-                                        </CardDescription>
+                                        <CardDescription className="text-lg font-medium">{member.role}</CardDescription>
                                     </div>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-center text-muted-foreground">
-                                        {member.bio}
-                                    </p>
+                                    <p className="text-center text-muted-foreground">{member.bio}</p>
                                 </CardContent>
                             </Card>
                         </Link>
