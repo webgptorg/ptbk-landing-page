@@ -20,7 +20,7 @@ export function HeroSection() {
             <BackgroundGrid />
             <div className="max-w-3xl space-y-8 relative z-10">
                 {/* added z-10 to put content above grid */}
-                <h1 className="scroll-m-20 text-6xl font-extrabold tracking-tight lg:text-7xl">
+                <h1 className="scroll-m-20 text-6xl tracking-tight lg:text-7xl">
                     <MarkdownContent>{headclaim}</MarkdownContent>
                 </h1>
                 <p className="text-xl text-muted-foreground">

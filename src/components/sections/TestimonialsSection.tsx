@@ -76,7 +76,7 @@ export function TestimonialsSection() {
                                             <Card className="h-full relative group hover:-translate-y-1 transition-transform duration-300">
                                                 <div className="absolute -inset-[1px] bg-gradient-to-r from-primary/50 via-primary/20 to-primary/50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
 
-                                                <CardContent className="relative p-6 h-full bg-black/40 backdrop-blur-sm rounded-lg border border-primary/10">
+                                                <CardContent className="relative p-6 h-full backdrop-blur-sm rounded-lg border border-primary/10">
                                                     <blockquote className="space-y-4">
                                                         <p className="text-muted-foreground relative">
                                                             {`"${testimonial.quote}"`}
