@@ -25,7 +25,6 @@ export function HeroSection() {
                 </h1>
                 <p className="text-xl text-muted-foreground">
                     <MarkdownContent>{subclaim}</MarkdownContent>
-                    !!!seed={seed}
                 </p>
                 <div className="flex gap-4">
                     <Button size="lg">

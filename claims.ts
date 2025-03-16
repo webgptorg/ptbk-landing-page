@@ -11,16 +11,16 @@ export const CLAIMS = [
     It's time for a paradigm shift!
     Future of software is in plain English ✨
     `,
-    /*/
+    /**/
     `
-    Xxxx
-    Xxxx
+    Write **Books** not code
+    We believe that the future of software is in plain English.
     `,
     /**/
-    /*/
+    /**/
     `
-    Xxxx
-    Xxxx
+    Write **Books** not code
+    Shift from ifs, loops, and variables to stories, personas and knowledge.
     `,
     /**/
     /*/
