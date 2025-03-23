@@ -35,7 +35,7 @@ export function Footer() {
                             </li>
                             <li>
                                 <a
-                                    href="https://github.com/webgptorg/promtbook"
+                                    href="https://github.com/webgptorg/promptbook"
                                     className="text-muted-foreground hover:text-foreground"
                                 >
                                     Documentation
