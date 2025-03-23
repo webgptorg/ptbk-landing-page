@@ -25,7 +25,7 @@ const PLAYGROUND_EXAMPLES = getBookTemplates()
         return {
             id: index,
             title: pipeline.title,
-            fullStudioUrl: `https://promptbook.studio/miniapp/new?book=${book}`,
+            fullStudioUrl: `https://promptbook.studio/?book=${book}`,
             codeUrl: `https://promptbook.studio/embed/code-miniapp?integrationId=${PTBKIO_INTEGRATION_ID}&book=${book}`,
             previewUrl: `https://promptbook.studio/embed/preview-miniapp?integrationId=${PTBKIO_INTEGRATION_ID}&book=${book}`,
         };
