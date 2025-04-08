@@ -41,7 +41,7 @@ interface FrozenFrameProps {
     setActivated(isActivated: boolean): void;
 }
 
-const GRID_SIZE = 50;
+const GRID_SIZE = 15;
 
 export function FrozenFrame(props: FrozenFrameProps) {
     const { title, url, className, isActivated, setActivated } = props;
@@ -92,7 +92,7 @@ export function FrozenFrame(props: FrozenFrameProps) {
         );
     } else {
         const screenshotUrl = new URL('https://browser.s5.ptbk.io/screenshot'); // <- TODO: Unhardcode https://browser.s5.ptbk.io/, add to config
-        const dimensionsRounded = dimensions.map((value) => Math.round(value / GRID_SIZE) * GRID_SIZE);
+        const dimensionsRounded = dimensions.map((value) => Math.ceil(value / GRID_SIZE) * GRID_SIZE);
         screenshotUrl.searchParams.set('url', websiteUrl.href);
         screenshotUrl.searchParams.set('theme', theme);
         screenshotUrl.searchParams.set('width', dimensionsRounded.x.toString());
