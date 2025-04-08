@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Separator } from '@/components/ui/separator';
 import { getBookTemplates } from '@promptbook/templates';
+import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { Vector } from 'xyzt';
@@ -47,6 +48,7 @@ export function FrozenFrame(props: FrozenFrameProps) {
     const { title, url, className, isActivated, setActivated } = props;
     const containerRef = useRef<HTMLDivElement>(null);
     const [dimensions, setDimensions] = useState<Vector>(Vector.square(512));
+    const { theme: landingPageTheme } = useTheme();
 
     useEffect(() => {
         if (!containerRef.current) return;
@@ -72,11 +74,12 @@ export function FrozenFrame(props: FrozenFrameProps) {
         };
     }, []);
 
-    const theme = 'DARK'; // <- TODO: !!! Unhardcode
+    const promptbookStudioTheme = landingPageTheme === 'light' ? 'LIGHT' : 'DARK';
+    // <- TODO: Some way how to handle `landingPageTheme === 'system'`
 
     const websiteUrl = new URL(url);
     websiteUrl.searchParams.set('editor', 'MONACO');
-    websiteUrl.searchParams.set('theme', theme);
+    websiteUrl.searchParams.set('theme', promptbookStudioTheme);
     websiteUrl.searchParams.set('nonce', '🛹');
     // <- TODO: !!! Also pass mode here and disable advanced and develope mode
 
@@ -94,7 +97,7 @@ export function FrozenFrame(props: FrozenFrameProps) {
         const screenshotUrl = new URL('https://browser.s5.ptbk.io/screenshot'); // <- TODO: Unhardcode https://browser.s5.ptbk.io/, add to config
         const dimensionsRounded = dimensions.map((value) => Math.ceil(value / GRID_SIZE) * GRID_SIZE);
         screenshotUrl.searchParams.set('url', websiteUrl.href);
-        screenshotUrl.searchParams.set('theme', theme);
+        screenshotUrl.searchParams.set('theme', promptbookStudioTheme);
         screenshotUrl.searchParams.set('width', dimensionsRounded.x.toString());
         screenshotUrl.searchParams.set('height', dimensionsRounded.y.toString());
 
@@ -126,6 +129,7 @@ interface PlaygroundItemProps {
 
 export function PlaygroundItem(props: PlaygroundItemProps) {
     const { title, codeUrl, previewUrl } = props;
+    const { theme } = useTheme();
 
     const [isActivated, setActivated] = useState(false);
 
@@ -133,7 +137,7 @@ export function PlaygroundItem(props: PlaygroundItemProps) {
         <div className="flex flex-col md:flex-row gap-8 w-full">
             {/* The Book Section */}
             <div className="flex-1 space-y-2">
-                <h3 className="text-sm font-medium">The Book</h3>
+                <h3 className="text-sm font-medium">The Book{theme}</h3>
                 <div className="relative group">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-primary/30 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                     <div className="min-h-[400px] font-mono relative bg-black/90 backdrop-blur-sm border rounded-lg overflow-auto">
