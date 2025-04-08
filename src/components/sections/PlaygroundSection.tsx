@@ -6,6 +6,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Separator } from '@/components/ui/separator';
 import { getBookTemplates } from '@promptbook/templates';
 import Link from 'next/link';
+import { useState } from 'react';
 
 const PTBKIO_INTEGRATION_ID = '1239a0ee-02bd-4aa8-98d2-0dc7a2eb2612';
 //     <- TODO: Transfer to env variables
@@ -31,13 +32,58 @@ const PLAYGROUND_EXAMPLES = getBookTemplates()
         };
     });
 
+interface FrozenFrameProps {
+    title: string;
+    url: string;
+    className: string;
+    isActivated: boolean;
+    setActivated(isActivated: boolean): void;
+}
+
+export function FrozenFrame(props: FrozenFrameProps) {
+    const { title, url, className, isActivated, setActivated } = props;
+
+    if (isActivated) {
+        return (
+            <iframe
+                src={url} // <- TODO: !!! Also pass mode here and disable advanced and develope mode
+                allow="cross-origin-isolated"
+                cross-origin="anonymous"
+                loading="eager" // <- Note: Now the miniapp is activated so show it immediately
+                {...{ className, title }}
+            />
+        );
+    } else {
+        const screenshotUrl = new URL('https://browser.s5.ptbk.io/screenshot'); // <- TODO: Unhardcode https://browser.s5.ptbk.io/, add to config
+
+        screenshotUrl.searchParams.set('url', url);
+        screenshotUrl.searchParams.set('theme', 'DARK'); // <- TODO: !!! Unhardcode
+        screenshotUrl.searchParams.set('width', 500 + ''); // <- TODO: !!! Unhardcode
+        screenshotUrl.searchParams.set('height', 500 + ''); // <- TODO: !!! Unhardcode
+
+        return (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+                src={screenshotUrl.href}
+                loading="lazy"
+                alt={title}
+                onClick={() => void setActivated(true)}
+                {...{ className, title }}
+            />
+        );
+    }
+}
+
 interface PlaygroundItemProps {
+    title: string;
     codeUrl: string;
     previewUrl: string;
 }
 
 export function PlaygroundItem(props: PlaygroundItemProps) {
-    const { codeUrl, previewUrl } = props;
+    const { title, codeUrl, previewUrl } = props;
+
+    const [isActivated, setActivated] = useState(false);
 
     return (
         <div className="flex flex-col md:flex-row gap-8 w-full">
@@ -47,15 +93,14 @@ export function PlaygroundItem(props: PlaygroundItemProps) {
                 <div className="relative group">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-primary/30 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                     <div className="min-h-[400px] font-mono relative bg-black/90 backdrop-blur-sm border rounded-lg overflow-auto">
-                        <iframe
-                            title="✨ Book editor"
-                            src={codeUrl}
+                        <FrozenFrame
+                            title={`${title} Book text`}
+                            url={codeUrl}
                             className="min-h-[400px] h-full w-full"
-                            allow="cross-origin-isolated"
-                            cross-origin="anonymous"
-                            loading="lazy"
+                            {...{ isActivated, setActivated }}
                         />
-                        {/* <- TODO: [🎇] This should integrated via SDK not <iframe/> */}
+
+                        {/* <- TODO: [🎇] This should integrated via SDK not <iframe/> or <img/>*/}
                     </div>
                 </div>
             </div>
@@ -69,15 +114,13 @@ export function PlaygroundItem(props: PlaygroundItemProps) {
                 <div className="relative group">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-primary/50 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                     <div className="min-h-[400px] font-mono relative bg-black/90 backdrop-blur-sm border rounded-lg overflow-auto">
-                        <iframe
-                            title="✨ Hello Book Miniapp"
-                            src={previewUrl}
+                        <FrozenFrame
+                            title={`${title} Miniapp`}
+                            url={previewUrl}
                             className="min-h-[400px] h-full w-full"
-                            allow="cross-origin-isolated"
-                            cross-origin="anonymous"
-                            loading="lazy"
+                            {...{ isActivated, setActivated }}
                         />
-                        {/* <- TODO: [🎇] This should integrated via SDK not <iframe/> */}
+                        {/* <- TODO: [🎇] This should integrated via SDK not <iframe/> or <img/> */}
                     </div>
                 </div>
             </div>
@@ -98,7 +141,11 @@ export function PlaygroundSection() {
                                 <Card>
                                     <CardContent className="p-6">
                                         <h3 className="text-xl font-semibold mb-6 text-center">{example.title}</h3>
-                                        <PlaygroundItem codeUrl={example.codeUrl} previewUrl={example.previewUrl} />
+                                        <PlaygroundItem
+                                            title={example.title}
+                                            codeUrl={example.codeUrl}
+                                            previewUrl={example.previewUrl}
+                                        />
                                         <br />
                                         <Button size="lg">
                                             <Link href={example.fullStudioUrl}>◳ Open in Studio</Link>
