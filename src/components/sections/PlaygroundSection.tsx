@@ -6,7 +6,8 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Separator } from '@/components/ui/separator';
 import { getBookTemplates } from '@promptbook/templates';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { Vector } from 'xyzt';
 
 const PTBKIO_INTEGRATION_ID = '1239a0ee-02bd-4aa8-98d2-0dc7a2eb2612';
 //     <- TODO: Transfer to env variables
@@ -40,13 +41,49 @@ interface FrozenFrameProps {
     setActivated(isActivated: boolean): void;
 }
 
+const GRID_SIZE = 50;
+
 export function FrozenFrame(props: FrozenFrameProps) {
     const { title, url, className, isActivated, setActivated } = props;
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [dimensions, setDimensions] = useState<Vector>(Vector.square(512));
+
+    useEffect(() => {
+        if (!containerRef.current) return;
+
+        // Store the current ref value to use in cleanup
+        const currentRef = containerRef.current;
+
+        // Initial measurement
+        const updateDimensions = () => {
+            const { clientWidth, clientHeight } = currentRef;
+            setDimensions(new Vector(clientWidth, clientHeight));
+        };
+
+        updateDimensions();
+
+        // Set up resize observer to update dimensions when container size changes
+        const resizeObserver = new ResizeObserver(updateDimensions);
+        resizeObserver.observe(currentRef);
+
+        return () => {
+            // Use the captured ref value in cleanup
+            resizeObserver.disconnect();
+        };
+    }, []);
+
+    const theme = 'DARK'; // <- TODO: !!! Unhardcode
+
+    const websiteUrl = new URL(url);
+    websiteUrl.searchParams.set('editor', 'MONACO');
+    websiteUrl.searchParams.set('theme', theme);
+    websiteUrl.searchParams.set('nonce', '🛹');
+    // <- TODO: !!! Also pass mode here and disable advanced and develope mode
 
     if (isActivated) {
         return (
             <iframe
-                src={url} // <- TODO: !!! Also pass mode here and disable advanced and develope mode
+                src={websiteUrl.href}
                 allow="cross-origin-isolated"
                 cross-origin="anonymous"
                 loading="eager" // <- Note: Now the miniapp is activated so show it immediately
@@ -55,21 +92,28 @@ export function FrozenFrame(props: FrozenFrameProps) {
         );
     } else {
         const screenshotUrl = new URL('https://browser.s5.ptbk.io/screenshot'); // <- TODO: Unhardcode https://browser.s5.ptbk.io/, add to config
-
-        screenshotUrl.searchParams.set('url', url);
-        screenshotUrl.searchParams.set('theme', 'DARK'); // <- TODO: !!! Unhardcode
-        screenshotUrl.searchParams.set('width', 500 + ''); // <- TODO: !!! Unhardcode
-        screenshotUrl.searchParams.set('height', 500 + ''); // <- TODO: !!! Unhardcode
+        const dimensionsRounded = dimensions.map((value) => Math.round(value / GRID_SIZE) * GRID_SIZE);
+        screenshotUrl.searchParams.set('url', websiteUrl.href);
+        screenshotUrl.searchParams.set('theme', theme);
+        screenshotUrl.searchParams.set('width', dimensionsRounded.x.toString());
+        screenshotUrl.searchParams.set('height', dimensionsRounded.y.toString());
 
         return (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-                src={screenshotUrl.href}
-                loading="lazy"
-                alt={title}
-                onClick={() => void setActivated(true)}
-                {...{ className, title }}
-            />
+            <div ref={containerRef} className={className}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                    src={screenshotUrl.href}
+                    style={{
+                        objectFit: 'contain',
+                        objectPosition: '0% 0%',
+                    }}
+                    loading="lazy"
+                    alt={title}
+                    onClick={() => void setActivated(true)}
+                    title={title}
+                    className="w-full h-full"
+                />
+            </div>
         );
     }
 }
