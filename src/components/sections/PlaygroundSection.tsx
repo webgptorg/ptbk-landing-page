@@ -80,7 +80,7 @@ export function FrozenFrame(props: FrozenFrameProps) {
     const websiteUrl = new URL(url);
     websiteUrl.searchParams.set('editor', 'MONACO');
     websiteUrl.searchParams.set('theme', promptbookStudioTheme);
-    websiteUrl.searchParams.set('nonce', '🛹');
+    websiteUrl.searchParams.set('nonce', '✨');
     // <- TODO: !!! Also pass mode here and disable advanced and develope mode
 
     if (isActivated) {
