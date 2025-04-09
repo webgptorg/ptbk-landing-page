@@ -29,7 +29,7 @@ export function NumbersSection() {
         const fetchData = async () => {
             try {
                 // Fetch NPM download data
-                const npmResponse = await fetch('https://api.npmjs.org/downloads/range/last-month/@promptbook/utils');
+                const npmResponse = await fetch('https://api.npmjs.org/downloads/range/last-year/@promptbook/utils');
                 const npmJson = await npmResponse.json();
 
                 if (npmJson.error) {
@@ -80,13 +80,14 @@ export function NumbersSection() {
         const now = new Date();
         // Assume the project has been gaining stars at a steady rate
         // This is just an estimation for visualization purposes
-        const startingStars = Math.max(1, Math.floor(currentStars * 0.7));
-        const starsPerDay = (currentStars - startingStars) / 30;
+        const startingStars = Math.max(1, Math.floor(currentStars * 0.3));
+        const daysInYear = 365;
+        const starsPerDay = (currentStars - startingStars) / daysInYear;
 
-        for (let i = 30; i >= 0; i--) {
+        for (let i = daysInYear; i >= 0; i--) {
             const date = new Date(now);
             date.setDate(date.getDate() - i);
-            const dailyStars = Math.floor(startingStars + (30 - i) * starsPerDay);
+            const dailyStars = Math.floor(startingStars + (daysInYear - i) * starsPerDay);
 
             data.push({
                 date: date.toISOString().split('T')[0],
