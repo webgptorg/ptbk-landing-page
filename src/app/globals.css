@@ -6,6 +6,17 @@ body {
     font-family: Arial, Helvetica, 'OpenMojiBlack', sans-serif;
 }
 
+.view-lines,
+.monaco-mouse-cursor-text,
+.lines-content,
+.monaco-editor,
+.view-line,
+.view-lines
+/* <- Note: Classes from `<MonacoEditor/>` */ {
+    font-family: Consolas, 'Courier New', 'OpenMojiBlack', monospace;
+    /* <- Note: Extending native `<MonacoEditor/>` fonts */
+}
+
 /**
  * OpenMoji Colors CSS
   *
