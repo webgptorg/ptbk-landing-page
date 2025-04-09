@@ -59,7 +59,7 @@ export function PlaygroundItem(props: PlaygroundItemProps) {
                 <h3 className="text-sm font-medium">The Book</h3>
                 <div className="relative group">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-primary/30 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-                    <div className="min-h-[400px] font-mono relative bg-black/90 backdrop-blur-sm border rounded-lg overflow-auto">
+                    <div className="min-h-[400px] font-mono relative bg-black/90 backdrop-blur-sm border rounded-lg overflow-auto flex items-center justify-center">
                         <BookCodeEditor
                             // title={`${title} Book sourcecode`}
                             className="min-h-[400px] h-full w-full"
@@ -86,7 +86,7 @@ export function PlaygroundItem(props: PlaygroundItemProps) {
                             title={`${title} Miniapp`}
                             url={previewUrl}
                             className="min-h-[400px] h-full w-full"
-                            {...{ isActivated, setActivated,fullStudioUrl }}
+                            {...{ isActivated, setActivated, fullStudioUrl }}
                         />
                         {/* <- TODO: [🎇] This should integrated via SDK not <iframe/> or <img/> */}
                     </div>
