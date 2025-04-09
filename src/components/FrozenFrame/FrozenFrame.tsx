@@ -1,5 +1,6 @@
 'use client';
 
+import { keepUnused } from '@/organization/keepUnused';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
@@ -78,8 +79,7 @@ export function FrozenFrame(props: FrozenFrameProps) {
         screenshotUrl.searchParams.set('height', dimensionsRounded.y.toString());
 
         // console.log(websiteUrl.href);
-
-       
+        keepUnused(setActivated);
 
         return (
             <Link href={fullStudioUrl}>
