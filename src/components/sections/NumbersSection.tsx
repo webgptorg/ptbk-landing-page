@@ -10,35 +10,60 @@ interface NpmDownloads {
     downloads: number;
 }
 
-interface GithubStars {
+interface GithubStarsHistory {
     date: string;
     stars: number;
 }
 
+interface GithubApiResponse {
+    stargazers_count: number;
+}
+
 export function NumbersSection() {
     const [npmData, setNpmData] = useState<NpmDownloads[]>([]);
-    const [githubData, setGithubData] = useState<GithubStars[]>([]);
+    const [githubData, setGithubData] = useState<GithubStarsHistory[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        // Fetch npm download data and GitHub stars data
         const fetchData = async () => {
             try {
-                // Fetch NPM download data (this would need to be replaced with actual API calls)
-                // For example: const npmResponse = await fetch('https://api.npmjs.org/downloads/range/last-month/@promptbook/utils');
-                // For now using mock data
-                const mockNpmData = generateMockNpmData(30);
+                // Fetch NPM download data
+                const npmResponse = await fetch('https://api.npmjs.org/downloads/range/last-month/@promptbook/utils');
+                const npmJson = await npmResponse.json();
 
-                // Fetch GitHub stars data (this would need to be replaced with actual API calls)
-                // For example: const githubResponse = await fetch('https://api.github.com/repos/webgptorg/promptbook/stargazers');
-                // For now using mock data
-                const mockGithubData = generateMockGithubStars(30);
+                if (npmJson.error) {
+                    throw new Error(`NPM API error: ${npmJson.error}`);
+                }
 
-                setNpmData(mockNpmData);
-                setGithubData(mockGithubData);
+                const formattedNpmData = npmJson.downloads.map((item: any) => ({
+                    date: item.day,
+                    downloads: item.downloads,
+                }));
+
+                setNpmData(formattedNpmData);
+
+                // Fetch current GitHub stars
+                const githubResponse = await fetch('https://api.github.com/repos/webgptorg/promptbook', {
+                    headers: {
+                        Accept: 'application/vnd.github.v3+json',
+                    },
+                });
+
+                if (!githubResponse.ok) {
+                    throw new Error(`GitHub API error: ${githubResponse.status}`);
+                }
+
+                const githubJson: GithubApiResponse = await githubResponse.json();
+                const currentStars = githubJson.stargazers_count;
+
+                // Since GitHub API doesn't provide historical star data in a simple API call,
+                // we'll create a simulated history based on the current star count
+                const starHistory = generateEstimatedStarHistory(currentStars);
+                setGithubData(starHistory);
             } catch (err) {
-                setError('Failed to fetch data');
+                const errorMessage = err instanceof Error ? err.message : 'Failed to fetch data';
+                setError(errorMessage);
                 console.error(err);
             } finally {
                 setIsLoading(false);
@@ -48,41 +73,24 @@ export function NumbersSection() {
         fetchData();
     }, []);
 
-    // Helper function to generate mock NPM download data
-    const generateMockNpmData = (days: number): NpmDownloads[] => {
+    // Helper function to generate estimated star history based on current count
+    // Since we can't easily get historical star data without multiple API calls or a specialized service
+    const generateEstimatedStarHistory = (currentStars: number): GithubStarsHistory[] => {
         const data = [];
         const now = new Date();
+        // Assume the project has been gaining stars at a steady rate
+        // This is just an estimation for visualization purposes
+        const startingStars = Math.max(1, Math.floor(currentStars * 0.7));
+        const starsPerDay = (currentStars - startingStars) / 30;
 
-        for (let i = days; i > 0; i--) {
+        for (let i = 30; i >= 0; i--) {
             const date = new Date(now);
             date.setDate(date.getDate() - i);
-            data.push({
-                date: date.toISOString().split('T')[0],
-                downloads: 500 + Math.floor(Math.random() * 300) + i * 5,
-            });
-        }
-
-        return data;
-    };
-
-    // Helper function to generate mock GitHub stars data
-    const generateMockGithubStars = (days: number): GithubStars[] => {
-        const data = [];
-        const now = new Date();
-        let stars = 250;
-
-        for (let i = days; i > 0; i--) {
-            const date = new Date(now);
-            date.setDate(date.getDate() - i);
-
-            // Occasionally add some stars
-            if (i % 3 === 0) {
-                stars += Math.floor(Math.random() * 5) + 1;
-            }
+            const dailyStars = Math.floor(startingStars + (30 - i) * starsPerDay);
 
             data.push({
                 date: date.toISOString().split('T')[0],
-                stars,
+                stars: dailyStars,
             });
         }
 
@@ -123,7 +131,7 @@ export function NumbersSection() {
                                             <CartesianGrid strokeDasharray="3 3" />
                                             <XAxis dataKey="date" tick={{ fontSize: 12 }} />
                                             <YAxis tick={{ fontSize: 12 }} />
-                                            <Tooltip />
+                                            <Tooltip formatter={(value) => [`${value} downloads`, 'Downloads']} />
                                             <Line
                                                 type="monotone"
                                                 dataKey="downloads"
@@ -152,7 +160,7 @@ export function NumbersSection() {
                                             <CartesianGrid strokeDasharray="3 3" />
                                             <XAxis dataKey="date" tick={{ fontSize: 12 }} />
                                             <YAxis tick={{ fontSize: 12 }} />
-                                            <Tooltip />
+                                            <Tooltip formatter={(value) => [`${value} stars`, 'Stars']} />
                                             <Line
                                                 type="monotone"
                                                 dataKey="stars"
@@ -161,6 +169,9 @@ export function NumbersSection() {
                                             />
                                         </LineChart>
                                     </ResponsiveContainer>
+                                </div>
+                                <div className="text-xs text-gray-500 mt-2 text-center">
+                                    *Star history is an estimation based on current count
                                 </div>
                             </CardContent>
                         </Card>
