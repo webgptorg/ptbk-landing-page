@@ -18,6 +18,8 @@ export function keepUnused<TTypeToKeep1 = really_any, TTypeToKeep2 = really_any,
     ...valuesToKeep: ReadonlyArray<really_any>
 ): void {
     // Note: Do nothing
+    // @eslint-disable @typescript-eslint/no-unused-vars
+    // @eslint-disable @typescript-eslint/no-unused-expressions
     valuesToKeep as TTypeToKeep1;
     valuesToKeep as TTypeToKeep2;
     valuesToKeep as TTypeToKeep3;
