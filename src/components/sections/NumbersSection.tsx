@@ -1,8 +1,11 @@
 'use client';
 
 import { Card, CardContent } from '@/components/ui/card';
+import { TODO_any } from '@/organization/TODO_any';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { LoadingInteractiveImage } from '../LoadingInteractiveImage/LoadingInteractiveImage';
 
 // Types for our data
 interface NpmDownloads {
@@ -36,7 +39,7 @@ export function NumbersSection() {
                     throw new Error(`NPM API error: ${npmJson.error}`);
                 }
 
-                const formattedNpmData = npmJson.downloads.map((item: any) => ({
+                const formattedNpmData = npmJson.downloads.map((item: TODO_any) => ({
                     date: item.day,
                     downloads: item.downloads,
                 }));
@@ -103,11 +106,13 @@ export function NumbersSection() {
             <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
 
             <div className="container relative">
-                <h2 className="text-3xl font-bold text-center mb-12">Project Growth</h2>
+                <h2 className="text-3xl font-bold text-center mb-12">The Numbers</h2>
 
                 {isLoading ? (
                     <div className="flex justify-center items-center h-64">
-                        <p>Loading metrics...</p>
+                        <p>
+                            <LoadingInteractiveImage width={70} height={70} />
+                        </p>
                     </div>
                 ) : error ? (
                     <div className="flex justify-center items-center h-64">
@@ -117,7 +122,7 @@ export function NumbersSection() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <Card>
                             <CardContent className="p-6">
-                                <h3 className="text-xl font-semibold mb-4">NPM Downloads: @promptbook/utils</h3>
+                                <h3 className="text-xl font-semibold mb-4 text-center">⬇ NPM</h3>
                                 <div className="h-[300px]">
                                     <ResponsiveContainer width="100%" height="100%">
                                         <LineChart
@@ -142,11 +147,17 @@ export function NumbersSection() {
                                         </LineChart>
                                     </ResponsiveContainer>
                                 </div>
+                                <Link
+                                    href="https://www.npmjs.com/package/@promptbook/utils"
+                                    className="text-xs text-gray-500 mt-2 text-right block"
+                                >
+                                    @promptbook/utils on NPM
+                                </Link>
                             </CardContent>
                         </Card>
                         <Card>
                             <CardContent className="p-6">
-                                <h3 className="text-xl font-semibold mb-4">GitHub Stars: webgptorg/promptbook</h3>
+                                <h3 className="text-xl font-semibold mb-4 text-center">⭐ GitHub</h3>
                                 <div className="h-[300px]">
                                     <ResponsiveContainer width="100%" height="100%">
                                         <LineChart
@@ -171,9 +182,12 @@ export function NumbersSection() {
                                         </LineChart>
                                     </ResponsiveContainer>
                                 </div>
-                                <div className="text-xs text-gray-500 mt-2 text-center">
-                                    *Star history is an estimation based on current count
-                                </div>
+                                <Link
+                                    href="https://github.com/webgptorg/promptbook"
+                                    className="text-xs text-gray-500 mt-2 text-right block"
+                                >
+                                    Promptbook on GitHub
+                                </Link>
                             </CardContent>
                         </Card>
                     </div>
