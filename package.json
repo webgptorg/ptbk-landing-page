@@ -23,6 +23,7 @@
         "@radix-ui/react-slot": "^1.1.0",
         "@svgr/webpack": "^8.1.0",
         "@types/jest": "^29.5.14",
+        "babylonjs": "^8.1.1",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.1",
         "configchecker": "1.5.84",

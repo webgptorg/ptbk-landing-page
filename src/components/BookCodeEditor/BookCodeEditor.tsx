@@ -1,6 +1,7 @@
 import MonacoEditor from '@monaco-editor/react';
 import type { PipelineString } from '@promptbook/types';
 import { useTheme } from 'next-themes';
+import { LoadingInteractiveImage } from '../LoadingInteractiveImage/LoadingInteractiveImage';
 import { registerBookLanguage } from './bookLanguage';
 
 /**
@@ -29,7 +30,7 @@ export type BookCodeEditorProps = {
  * @see https://microsoft.github.io/monaco-editor/
  */
 export function BookCodeEditor(props: BookCodeEditorProps): JSX.Element {
-    const { className, bookSourcecode, onChange, fullStudioUrl } = props;
+    const { className, bookSourcecode, fullStudioUrl } = props;
 
     const { theme } = useTheme();
 
@@ -40,7 +41,7 @@ export function BookCodeEditor(props: BookCodeEditorProps): JSX.Element {
 
     return (
         <MonacoEditor
-            loading={<></>}
+            loading={<LoadingInteractiveImage width={60} height={60} />}
             theme={{ light: 'vs-light', dark: 'vs-dark' }[theme || 'dark']}
             language={'book'}
             beforeMount={handleEditorWillMount}
@@ -60,13 +61,6 @@ export function BookCodeEditor(props: BookCodeEditorProps): JSX.Element {
                 minimap: { enabled: false },
             }}
             defaultValue={bookSourcecode}
-            onChange={(value) => {
-                if (value === undefined) {
-                    return;
-                }
-
-                onChange(value as PipelineString);
-            }}
             {...{ className }}
         />
     );
