@@ -1,0 +1,290 @@
+{
+    "--note": "[🚒] This should not be source-of-truth, it should be generated from Promptbook engine parser and exported from `@promptbook/book-language`",
+    "name": "Book Markdown",
+    "scopeName": "text.book",
+    "fileTypes": ["book", "book.md", "ptbk", "ptbk.md"],
+    "patterns": [
+        {
+            "include": "#blocks"
+        }
+    ],
+    "repository": {
+        "blocks": {
+            "patterns": [
+                {
+                    "include": "#headers"
+                },
+                {
+                    "include": "#blockquotes"
+                },
+                {
+                    "include": "#codeblocks"
+                },
+                {
+                    "include": "#tables"
+                },
+                {
+                    "include": "#inline"
+                },
+                {
+                    "include": "#lists"
+                },
+                {
+                    "include": "#comments"
+                },
+                {
+                    "include": "#commands"
+                },
+                {
+                    "include": "#mermaid"
+                }
+            ]
+        },
+        "headers": {
+            "patterns": [
+                {
+                    "name": "heading.1.book",
+                    "match": "^(#{1})\\s+(.*)$",
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.heading.book"
+                        },
+                        "2": {
+                            "name": "entity.name.section.book"
+                        }
+                    }
+                },
+                {
+                    "name": "heading.2.book",
+                    "match": "^(#{2})\\s+(.*)$",
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.heading.book"
+                        },
+                        "2": {
+                            "name": "entity.name.section.book"
+                        }
+                    }
+                }
+            ]
+        },
+        "inline": {
+            "patterns": [
+                {
+                    "name": "markup.bold.book",
+                    "match": "\\*\\*([^\\*]+)\\*\\*",
+                    "captures": {
+                        "1": {
+                            "name": "markup.bold.book"
+                        }
+                    }
+                },
+                {
+                    "name": "markup.italic.book",
+                    "match": "\\*([^\\*]+)\\*",
+                    "captures": {
+                        "1": {
+                            "name": "markup.italic.book"
+                        }
+                    }
+                },
+                {
+                    "name": "markup.inline.raw.string.book",
+                    "match": "`([^`]+)`",
+                    "captures": {
+                        "1": {
+                            "name": "markup.inline.raw.string.book"
+                        }
+                    }
+                },
+                {
+                    "name": "markup.underline.link.book",
+                    "match": "\\[([^\\]]+)\\]\\(([^\\)]+)\\)",
+                    "captures": {
+                        "1": {
+                            "name": "string.other.link.title.book"
+                        },
+                        "2": {
+                            "name": "markup.underline.link.book"
+                        }
+                    }
+                },
+                {
+                    "name": "variable.parameter.book",
+                    "match": "\\{([^\\}]+)\\}",
+                    "captures": {
+                        "1": {
+                            "name": "variable.parameter.book"
+                        }
+                    }
+                }
+            ]
+        },
+        "lists": {
+            "patterns": [
+                {
+                    "name": "markup.list.unnumbered.book",
+                    "match": "^\\s*([-*+])\\s+(.*)$",
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.list.book"
+                        },
+                        "2": {
+                            "name": "markup.list.item.book"
+                        }
+                    }
+                },
+                {
+                    "name": "markup.list.numbered.book",
+                    "match": "^\\s*(\\d+[.)])\\s+(.*)$",
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.list.book"
+                        },
+                        "2": {
+                            "name": "markup.list.item.book"
+                        }
+                    }
+                }
+            ]
+        },
+        "blockquotes": {
+            "name": "markup.quote.book",
+            "begin": "^\\s*>\\s+",
+            "end": "$",
+            "patterns": [
+                {
+                    "include": "#inline"
+                }
+            ]
+        },
+        "codeblocks": {
+            "name": "markup.fenced_code.block.book",
+            "begin": "^\\s*(`{3,}|~{3,}).*$",
+            "end": "^\\s*\\1\\s*$",
+            "patterns": [
+                {
+                    "include": "source.any"
+                }
+            ]
+        },
+        "tables": {
+            "patterns": [
+                {
+                    "name": "markup.table.book",
+                    "match": "^\\|(.+)\\|$",
+                    "captures": {
+                        "1": {
+                            "patterns": [
+                                {
+                                    "match": "[^|]+",
+                                    "name": "markup.table.cell.book"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "markup.table.delimiter.book",
+                    "match": "^\\|\\s*([-:]+[-| :]*?)\\s*\\|$"
+                }
+            ]
+        },
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.block.book",
+                    "begin": "<!--",
+                    "end": "-->",
+                    "patterns": [
+                        {
+                            "include": "#inline"
+                        }
+                    ]
+                }
+            ]
+        },
+        "commands": {
+            "patterns": [
+                {
+                    "name": "keyword.command.section.book",
+                    "match": "^(\\s*([-*+]|(\\d+[.)]))\\s*)?SECTION"
+                },
+                {
+                    "name": "keyword.command.expect.book",
+                    "match": "^(\\s*([-*+]|(\\d+[.)]))\\s*)?EXPECT"
+                },
+                {
+                    "name": "keyword.command.format.book",
+                    "match": "^(\\s*([-*+]|(\\d+[.)]))\\s*)?FORMAT"
+                },
+                {
+                    "name": "keyword.command.joker.book",
+                    "match": "^(\\s*([-*+]|(\\d+[.)]))\\s*)?JOKER"
+                },
+                {
+                    "name": "keyword.command.model.book",
+                    "match": "^(\\s*([-*+]|(\\d+[.)]))\\s*)?MODEL"
+                },
+                {
+                    "name": "keyword.command.parameter.book",
+                    "match": "^(\\s*([-*+]|(\\d+[.)]))\\s*)?PARAMETER"
+                },
+                {
+                    "name": "keyword.command.postprocess.book",
+                    "match": "^(\\s*([-*+]|(\\d+[.)]))\\s*)?POSTPROCESS"
+                },
+                {
+                    "name": "keyword.command.book_version.book",
+                    "match": "^(\\s*([-*+]|(\\d+[.)]))\\s*)?BOOK_VERSION"
+                },
+                {
+                    "name": "keyword.command.formfactor.book",
+                    "match": "^(\\s*([-*+]|(\\d+[.)]))\\s*)?FORMFACTOR"
+                },
+                {
+                    "name": "keyword.command.url.book",
+                    "match": "^(\\s*([-*+]|(\\d+[.)]))\\s*)?URL"
+                },
+                {
+                    "name": "keyword.command.knowledge.book",
+                    "match": "^(\\s*([-*+]|(\\d+[.)]))\\s*)?KNOWLEDGE"
+                },
+                {
+                    "name": "keyword.command.action.book",
+                    "match": "^(\\s*([-*+]|(\\d+[.)]))\\s*)?ACTION"
+                },
+                {
+                    "name": "keyword.command.instrument.book",
+                    "match": "^(\\s*([-*+]|(\\d+[.)]))\\s*)?INSTRUMENT"
+                },
+                {
+                    "name": "keyword.command.persona.book",
+                    "match": "^(\\s*([-*+]|(\\d+[.)]))\\s*)?PERSONA"
+                },
+                {
+                    "name": "keyword.command.foreach.book",
+                    "match": "^(\\s*([-*+]|(\\d+[.)]))\\s*)?FOREACH"
+                },
+                {
+                    "name": "keyword.command.boilerplate.book",
+                    "match": "^(\\s*([-*+]|(\\d+[.)]))\\s*)?BOILERPLATE"
+                },
+                {
+                    "name": "keyword.command.example.book",
+                    "match": "^(\\s*([-*+]|(\\d+[.)]))\\s*)?(EXAMPLE|SAMPLE)"
+                }
+            ]
+        },
+        "mermaid": {
+            "name": "markup.mermaid.book",
+            "begin": "^\\s*```mermaid\\s*$",
+            "end": "^\\s*```\\s*$",
+            "patterns": [
+                {
+                    "include": "source.mermaid"
+                }
+            ]
+        }
+    }
+}

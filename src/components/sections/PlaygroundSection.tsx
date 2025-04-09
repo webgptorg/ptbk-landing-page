@@ -5,9 +5,10 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Separator } from '@/components/ui/separator';
 import { getBookTemplates } from '@promptbook/templates';
-import { useTheme } from 'next-themes';
+import type { PipelineString } from '@promptbook/types';
 import Link from 'next/link';
 import { useState } from 'react';
+import { BookCodeEditor } from '../BookCodeEditor/BookCodeEditor';
 import { FrozenFrame } from '../FrozenFrame/FrozenFrame';
 
 const PTBKIO_INTEGRATION_ID = '1239a0ee-02bd-4aa8-98d2-0dc7a2eb2612';
@@ -31,6 +32,7 @@ const PLAYGROUND_EXAMPLES = getBookTemplates()
             fullStudioUrl: `https://promptbook.studio/?book=${book}`,
             codeUrl: `https://promptbook.studio/embed/code-miniapp?integrationId=${PTBKIO_INTEGRATION_ID}&book=${book}`,
             previewUrl: `https://promptbook.studio/embed/preview-miniapp?integrationId=${PTBKIO_INTEGRATION_ID}&book=${book}`,
+            bookSourcecode: pipeline.sources[0]!.content!,
         };
     });
 
@@ -38,11 +40,11 @@ interface PlaygroundItemProps {
     title: string;
     codeUrl: string;
     previewUrl: string;
+    bookSourcecode: PipelineString;
 }
 
 export function PlaygroundItem(props: PlaygroundItemProps) {
-    const { title, codeUrl, previewUrl } = props;
-    const { theme } = useTheme();
+    const { title, /* codeUrl, */ previewUrl, bookSourcecode } = props;
 
     const [isActivated, setActivated] = useState(false);
 
@@ -53,15 +55,19 @@ export function PlaygroundItem(props: PlaygroundItemProps) {
         <div className="flex flex-col md:flex-row gap-8 w-full">
             {/* The Book Section */}
             <div className="flex-1 space-y-2">
-                <h3 className="text-sm font-medium">The Book{theme}</h3>
+                <h3 className="text-sm font-medium">The Book</h3>
                 <div className="relative group">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-primary/30 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                     <div className="min-h-[400px] font-mono relative bg-black/90 backdrop-blur-sm border rounded-lg overflow-auto">
-                        <FrozenFrame
-                            title={`${title} Book text`}
-                            url={codeUrl}
+                        <BookCodeEditor
+                            // title={`${title} Book sourcecode`}
                             className="min-h-[400px] h-full w-full"
-                            {...{ isActivated, setActivated }}
+                            bookSourcecode={bookSourcecode}
+                            onChange={(newBookSourcecode) => {
+                                console.log(newBookSourcecode);
+                            }}
+
+                            // {...{ isActivated, setActivated }}
                         />
 
                         {/* <- TODO: [🎇] This should integrated via SDK not <iframe/> or <img/>*/}
@@ -109,6 +115,7 @@ export function PlaygroundSection() {
                                             title={example.title}
                                             codeUrl={example.codeUrl}
                                             previewUrl={example.previewUrl}
+                                            bookSourcecode={example.bookSourcecode}
                                         />
                                         <br />
                                         <Button size="lg">

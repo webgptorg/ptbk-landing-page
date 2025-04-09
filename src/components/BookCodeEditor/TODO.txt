@@ -1,0 +1,7 @@
+- TODO: [🚒] Generate dynamically from Promptbook Engine -> `book.tmLanguage.json` -> `bookLanguage.ts`
+
+
+Prompt:
+I need to define custom `book` language for Monaco Editor based on tmLanguage
+
+with Claude 3.7 Sonnet Thinking

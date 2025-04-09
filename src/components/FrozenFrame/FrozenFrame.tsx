@@ -74,21 +74,17 @@ export function FrozenFrame(props: FrozenFrameProps) {
         // console.log(websiteUrl.href);
 
         return (
-            <div ref={containerRef} className={className}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                    src={screenshotUrl.href}
-                    style={{
-                        objectFit: 'contain',
-                        objectPosition: '0% 0%',
-                    }}
-                    loading="lazy"
-                    alt={title}
-                    onClick={() => void setActivated(true)}
-                    title={title}
-                    className="w-full h-full"
-                />
-            </div>
+            <div
+                ref={containerRef}
+                className={className}
+                title={title}
+                style={{
+                    objectFit: 'contain',
+                    objectPosition: '0% 0%',
+                    backgroundImage: `url(${screenshotUrl.href})`,
+                    // <- Note: Not using <img/> to ensure that image content never ever changes aspect ratio of the container, Behavior of `backgroundImage` is more similar to <iframe/>
+                }}
+            />
         );
     }
 }
