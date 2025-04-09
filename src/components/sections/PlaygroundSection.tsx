@@ -101,6 +101,8 @@ export function FrozenFrame(props: FrozenFrameProps) {
         screenshotUrl.searchParams.set('width', dimensionsRounded.x.toString());
         screenshotUrl.searchParams.set('height', dimensionsRounded.y.toString());
 
+        // console.log(websiteUrl.href);
+
         return (
             <div ref={containerRef} className={className}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -132,6 +134,9 @@ export function PlaygroundItem(props: PlaygroundItemProps) {
     const { theme } = useTheme();
 
     const [isActivated, setActivated] = useState(false);
+
+    // !!! Do not activate
+    // !!! Add NPM downloads and other proofs
 
     return (
         <div className="flex flex-col md:flex-row gap-8 w-full">
