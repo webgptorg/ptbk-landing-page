@@ -11,16 +11,16 @@ export type BookCodeEditorProps = {
      * Optional CSS class name which will be added to root element
      */
     readonly className?: string;
-} & {
+
     /**
      * The code
      */
     readonly bookSourcecode: PipelineString;
 
     /**
-     * Called when the code in editor changes
+     * Link to open the book in Promptbook Studio
      */
-    onChange(newBookSourcecode: PipelineString): void;
+    readonly fullStudioUrl: string;
 };
 
 /**
@@ -29,7 +29,7 @@ export type BookCodeEditorProps = {
  * @see https://microsoft.github.io/monaco-editor/
  */
 export function BookCodeEditor(props: BookCodeEditorProps): JSX.Element {
-    const { className, bookSourcecode, onChange } = props;
+    const { className, bookSourcecode, onChange, fullStudioUrl } = props;
 
     const { theme } = useTheme();
 
@@ -40,13 +40,18 @@ export function BookCodeEditor(props: BookCodeEditorProps): JSX.Element {
 
     return (
         <MonacoEditor
-            // loading={<></>}
+            loading={<></>}
             theme={{ light: 'vs-light', dark: 'vs-dark' }[theme || 'dark']}
             language={'book'}
             beforeMount={handleEditorWillMount}
             options={{
                 wordWrap: 'on',
-                readOnly: false,
+                readOnly: true,
+                readOnlyMessage: {
+                    value: `[◳ Edit in Studio](${fullStudioUrl})`,
+                    isTrusted: true,
+                    supportHtml: true,
+                },
                 lineNumbers: 'off', // <- Disable line numbers
                 glyphMargin: false, // <- Disable the glyph margin
                 folding: false, // <- Disable the folding controls

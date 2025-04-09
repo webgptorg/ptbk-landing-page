@@ -41,10 +41,11 @@ interface PlaygroundItemProps {
     codeUrl: string;
     previewUrl: string;
     bookSourcecode: PipelineString;
+    fullStudioUrl: string;
 }
 
 export function PlaygroundItem(props: PlaygroundItemProps) {
-    const { title, /* codeUrl, */ previewUrl, bookSourcecode } = props;
+    const { title, /* codeUrl, */ previewUrl, bookSourcecode, fullStudioUrl } = props;
 
     const [isActivated, setActivated] = useState(false);
 
@@ -63,10 +64,7 @@ export function PlaygroundItem(props: PlaygroundItemProps) {
                             // title={`${title} Book sourcecode`}
                             className="min-h-[400px] h-full w-full"
                             bookSourcecode={bookSourcecode}
-                            onChange={(newBookSourcecode) => {
-                                console.log(newBookSourcecode);
-                            }}
-
+                            {...{ fullStudioUrl }}
                             // {...{ isActivated, setActivated }}
                         />
 
@@ -88,7 +86,7 @@ export function PlaygroundItem(props: PlaygroundItemProps) {
                             title={`${title} Miniapp`}
                             url={previewUrl}
                             className="min-h-[400px] h-full w-full"
-                            {...{ isActivated, setActivated }}
+                            {...{ isActivated, setActivated,fullStudioUrl }}
                         />
                         {/* <- TODO: [🎇] This should integrated via SDK not <iframe/> or <img/> */}
                     </div>
@@ -113,6 +111,7 @@ export function PlaygroundSection() {
                                         <h3 className="text-xl font-semibold mb-6 text-center">{example.title}</h3>
                                         <PlaygroundItem
                                             title={example.title}
+                                            fullStudioUrl={example.fullStudioUrl}
                                             codeUrl={example.codeUrl}
                                             previewUrl={example.previewUrl}
                                             bookSourcecode={example.bookSourcecode}

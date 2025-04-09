@@ -1,6 +1,7 @@
 'use client';
 
 import { useTheme } from 'next-themes';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { Vector } from 'xyzt';
 
@@ -10,12 +11,17 @@ interface FrozenFrameProps {
     className: string;
     isActivated: boolean;
     setActivated(isActivated: boolean): void;
+
+    /**
+     * Link to open the book in Promptbook Studio
+     */
+    readonly fullStudioUrl: string;
 }
 
 const GRID_SIZE = 15;
 
 export function FrozenFrame(props: FrozenFrameProps) {
-    const { title, url, className, isActivated, setActivated } = props;
+    const { title, url, className, isActivated, setActivated, fullStudioUrl } = props;
     const containerRef = useRef<HTMLDivElement>(null);
     const [dimensions, setDimensions] = useState<Vector>(Vector.square(512));
     const { theme: landingPageTheme } = useTheme();
@@ -73,18 +79,22 @@ export function FrozenFrame(props: FrozenFrameProps) {
 
         // console.log(websiteUrl.href);
 
+       
+
         return (
-            <div
-                ref={containerRef}
-                className={className}
-                title={title}
-                style={{
-                    objectFit: 'contain',
-                    objectPosition: '0% 0%',
-                    backgroundImage: `url(${screenshotUrl.href})`,
-                    // <- Note: Not using <img/> to ensure that image content never ever changes aspect ratio of the container, Behavior of `backgroundImage` is more similar to <iframe/>
-                }}
-            />
+            <Link href={fullStudioUrl}>
+                <div
+                    ref={containerRef}
+                    className={className}
+                    title={title}
+                    style={{
+                        objectFit: 'contain',
+                        objectPosition: '0% 0%',
+                        backgroundImage: `url(${screenshotUrl.href})`,
+                        // <- Note: Not using <img/> to ensure that image content never ever changes aspect ratio of the container, Behavior of `backgroundImage` is more similar to <iframe/>
+                    }}
+                />
+            </Link>
         );
     }
 }
