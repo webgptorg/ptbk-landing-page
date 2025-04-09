@@ -4,6 +4,7 @@ import { AboutUsSection } from '@/components/sections/AboutUsSection';
 import { FAQSection } from '@/components/sections/FAQSection';
 import { FeaturesSection } from '@/components/sections/FeaturesSection';
 import { HeroSection } from '@/components/sections/HeroSection';
+import { NumbersSection } from '@/components/sections/NumbersSection';
 import { PlaygroundSection } from '@/components/sections/PlaygroundSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { Logo } from '@/components/ui/logo';
@@ -17,6 +18,7 @@ export default function HomePage() {
                 <HeroSection />
                 <PlaygroundSection />
                 <TestimonialsSection />
+                <NumbersSection />
                 <FeaturesSection />
                 {/*
                 Note: [😴] This section is commented out because it has just lorem-ipsum content and also <TestimonialsSection /> has same purpose
