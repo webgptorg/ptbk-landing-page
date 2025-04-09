@@ -1,3 +1,4 @@
+import { just } from './just';
 import type { really_any } from './really_any';
 
 /**
@@ -12,5 +13,5 @@ import type { really_any } from './really_any';
  */
 export function TODO_USE(...value: ReadonlyArray<really_any>): void {
     // Note: Do nothing
-    value;
+    just(value);
 }
