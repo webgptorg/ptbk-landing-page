@@ -13,7 +13,8 @@ export function HeroSection() {
     const claim = randomItem(seed, ...CLAIMS);
     const [headclaim, ...subclaimItems] = spaceTrim(claim).split('\n');
     const subclaim = subclaimItems.join('\n');
-    console.log('!!!', { claim, headclaim, subclaim });
+
+    // console.log('!!!', { claim, headclaim, subclaim });
 
     return (
         <div className="relative overflow-hidden p-6">

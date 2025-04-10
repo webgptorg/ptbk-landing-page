@@ -1,0 +1,15 @@
+.QrCode {
+    /*/
+    outline: 1px dotted rgb(255, 38, 38) !important;
+    /**/
+
+    cursor: grab /* <- TODO: Make QR code truly grabbable */;
+    /* <- Note: @see http://elektronotdienst-nuernberg.de/bugs/cursor.html */
+
+    padding: 3px;
+}
+
+.QrCode canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
