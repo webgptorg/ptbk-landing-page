@@ -13,7 +13,7 @@ export function randomItem<TItem>(seed: string, ...items: Array<TItem>): TItem {
     const randomIndex = Math.floor(randomNumber * items.length);
     const randomItem = items[randomIndex]!;
 
-    console.log('!!!', { randomNumber, randomIndex, randomItem });
+    // console.log('!!!', { randomNumber, randomIndex, randomItem });
 
     return randomItem;
 }

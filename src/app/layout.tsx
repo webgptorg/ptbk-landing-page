@@ -3,6 +3,7 @@ import { BackgroundPattern } from '@/components/ui/background-pattern';
 import { CLAIM, NAME } from '@promptbook/core';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import Script from 'next/script';
 import './globals.css';
 
 const geistSans = localFont({
@@ -34,6 +35,44 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     <BackgroundPattern />
                     {children}
                 </ThemeProvider>
+
+                {/* ----------------- */}
+
+                {/* Promptbook app 💬 Chatbot */}
+                <Script id="c1620321-aca3-4bed-85d7-bf57ac8ce35a">
+                    {`
+                    // [🔌] Integration code of Promptbook app 💬 Chatbot into https://ptbk.io/ or https://github.com/webgptorg/promptbook/
+
+                    const bookAppScript = document.createElement('script');
+                    bookAppScript.async = true;
+                    bookAppScript.src = "https://promptbook.studio/api/embed/miniapp.js?id=c1620321-aca3-4bed-85d7-bf57ac8ce35a";
+                    document.head.appendChild(bookAppScript);
+
+                    bookAppScript.addEventListener('load', () => {
+                        activateEmbeddedChatbot(
+                            {
+                                "theme": "DARK",
+                                "position": "BOTTOM_RIGHT",
+                                "isTestingMode": false
+                            }
+                        );
+                    });    
+                `}
+                </Script>
+
+                {/* ----------------- */}
+
+                {/* Google Analytics */}
+                <Script src="https://www.googletagmanager.com/gtag/js?id=G-2B6ZPV8L8W" />
+                <Script id="G-2B6ZPV8L8W">
+                    {`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+
+                    gtag('config', 'G-2B6ZPV8L8W');
+                    `}
+                </Script>
             </body>
         </html>
     );

@@ -17,7 +17,7 @@ export function HeroSection() {
     const [headclaim, ...subclaimItems] = spaceTrim(claim).split('\n');
     const subclaim = subclaimItems.join('\n');
 
-    console.log('!!!', { claim, claimTest, claimRandom, headclaim, subclaim });
+    // console.log('!!!', { claim, claimTest, claimRandom, headclaim, subclaim });
 
     return (
         <div className="relative overflow-hidden p-6">
