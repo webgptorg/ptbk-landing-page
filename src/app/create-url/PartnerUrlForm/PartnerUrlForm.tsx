@@ -67,7 +67,7 @@ export function PartnerUrlForm(props: PartnerUrlFormProps): JSX.Element {
                     setPartnerUrlData(partnerUrlData as really_any);
                 }}
             >
-                {JSON.stringify(partnerUrlData, null, 4)}
+                {/*JSON.stringify(partnerUrlData, null, 4)*/}
 
                 <div className={styles.field}>
                     <label>
