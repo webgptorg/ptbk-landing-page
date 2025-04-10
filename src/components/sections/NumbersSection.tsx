@@ -5,7 +5,6 @@ import { TODO_any } from '@/organization/TODO_any';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
-import seedrandom from 'seedrandom';
 import { LoadingInteractiveImage } from '../LoadingInteractiveImage/LoadingInteractiveImage';
 
 // Types for our data
@@ -88,18 +87,10 @@ export function NumbersSection() {
         const daysInYear = 365;
         const starsPerDay = (currentStars - startingStars) / daysInYear;
 
-        const random = seedrandom('some-randomness-to-make-it-look-better');
-        let cumulativeRandomness = 0;
-
         for (let i = daysInYear; i >= 0; i--) {
             const date = new Date(now);
             date.setDate(date.getDate() - i);
-
-            if (random() > 0.05) {
-                cumulativeRandomness += Math.ceil(random() * 10);
-            }
-
-            const dailyStars = Math.floor(startingStars + (daysInYear - i) * starsPerDay) + cumulativeRandomness;
+            const dailyStars = Math.floor(startingStars + (daysInYear - i) * starsPerDay);
 
             data.push({
                 date: date.toISOString().split('T')[0],
