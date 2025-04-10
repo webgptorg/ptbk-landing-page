@@ -24,7 +24,6 @@ const TEAM_MEMBERS: TeamMember[] = [
         imageBackground: `linear-gradient(215deg, rgb(253, 160, 133) 0%, rgb(0 149 255) 100%)`,
         link: 'https://www.pavolhejny.com/',
     },
-    /*/
     {
         name: 'Jiří Jahn',
         role: 'CEO & Co-founder',
@@ -34,7 +33,6 @@ const TEAM_MEMBERS: TeamMember[] = [
         imageBackground: `linear-gradient(145deg, rgb(253, 160, 133) 0%, rgb(0 149 255) 100%)`,
         link: 'https://www.linkedin.com/in/jirkajahn/',
     },
-    /**/
 ];
 
 export function AboutUsSection() {
