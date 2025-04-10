@@ -2,6 +2,7 @@
 import { BackgroundGrid } from '@/components/ui/background-grid';
 import { Button } from '@/components/ui/button';
 import { useRandomSeed } from '@/hooks/useRandomSeed';
+import { useTestVariabiles } from '@/hooks/useTestVariabiles';
 import { spaceTrim } from '@promptbook/utils';
 import Link from 'next/link';
 import { CLAIMS } from '../../../claims';
@@ -9,12 +10,14 @@ import { MarkdownContent } from '../utils/MarkdownContent/MarkdownContent';
 import { randomItem } from '../utils/Shuffle/randomItem';
 
 export function HeroSection() {
+    const { claim: claimTest } = useTestVariabiles();
     const seed = useRandomSeed('claim');
-    const claim = randomItem(seed, ...CLAIMS);
+    const claimRandom = randomItem(seed, ...CLAIMS);
+    const claim = claimTest || claimRandom;
     const [headclaim, ...subclaimItems] = spaceTrim(claim).split('\n');
     const subclaim = subclaimItems.join('\n');
 
-    // console.log('!!!', { claim, headclaim, subclaim });
+    console.log('!!!', { claim, claimTest, claimRandom, headclaim, subclaim });
 
     return (
         <div className="relative overflow-hidden p-6">

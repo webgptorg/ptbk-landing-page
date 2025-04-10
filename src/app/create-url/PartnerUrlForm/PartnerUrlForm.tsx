@@ -3,6 +3,7 @@ import { QrCode } from '@/components/QrCode/QrCode';
 import { keepUnused } from '@/organization/keepUnused';
 import { really_any } from '@/organization/really_any';
 import { classNames } from '@/utils/classNames';
+import { normalizeTo_snake_case, spaceTrim } from '@promptbook/utils';
 import { useMemo, useRef, useState } from 'react';
 import { NEXT_PUBLIC_URL } from '../../../../config';
 import styles from './PartnerUrlForm.module.css';
@@ -32,9 +33,19 @@ export function PartnerUrlForm(props: PartnerUrlFormProps): JSX.Element {
             partnerUrlData.utm_campaign = `partner-${partnerUrlData.partner}`;
         }
 
-        for (const [key, value] of Object.entries(partnerUrlData)) {
-            if (!value) {
+        for (let [key, value] of Object.entries(partnerUrlData)) {
+            value = spaceTrim(value);
+
+            if (value === '') {
                 continue;
+            }
+
+            if (key.startsWith('is') && value === 'on') {
+                value = '1';
+            }
+
+            if (!key.startsWith('utm_')) {
+                key = normalizeTo_snake_case(`test_${key}`);
             }
 
             partnerUrl.searchParams.set(key, value);
@@ -56,6 +67,8 @@ export function PartnerUrlForm(props: PartnerUrlFormProps): JSX.Element {
                     setPartnerUrlData(partnerUrlData as really_any);
                 }}
             >
+                {JSON.stringify(partnerUrlData, null, 4)}
+
                 <div className={styles.field}>
                     <label>
                         <p>UTM medium:</p>
@@ -78,7 +91,7 @@ export function PartnerUrlForm(props: PartnerUrlFormProps): JSX.Element {
                 <div className={styles.field}>
                     <label>
                         <p>UTM Content:</p>
-                        <input name="utm_content" placeholder="post-2023-12-19-001" type="text" />
+                        <input name="utm_content" placeholder="post-2025-05-05-001" type="text" />
                     </label>
                     <p className={styles.note}>
                         Used to differentiate ads or links that point to the same URL, for example call-to-action,
@@ -88,8 +101,29 @@ export function PartnerUrlForm(props: PartnerUrlFormProps): JSX.Element {
 
                 <div className={styles.field}>
                     <label>
+                        <p>Claim:</p>
+                        <textarea name="claim" />
+                    </label>
+                </div>
+
+                <div className={styles.field}>
+                    <label>
                         <p>Show unapproved testimonials:</p>
-                        <input name="testimonials" type="checkbox" />
+                        <input name="is_unapproved_testimonials_shown" type="checkbox" />
+                    </label>
+                </div>
+
+                <div className={styles.field}>
+                    <label>
+                        <p>Role of Pavol Hejný:</p>
+                        <textarea name="pavol_role" />
+                    </label>
+                </div>
+
+                <div className={styles.field}>
+                    <label>
+                        <p>Role of Jiří Jahn:</p>
+                        <textarea name="jiri_role" />
                     </label>
                 </div>
             </form>

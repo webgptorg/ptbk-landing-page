@@ -2,7 +2,7 @@
 
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { useTestMode } from '@/hooks/useTestMode';
+import { useTestVariabiles } from '@/hooks/useTestVariabiles';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Shuffle } from '../utils/Shuffle/Shuffle';
@@ -39,8 +39,12 @@ const NOT_APPROVED_TESTIMONIALS: Array<Testimonial> = [
 ];
 
 export function TestimonialsSection() {
-    const isTestMode = useTestMode();
-    const testimonials = [...APPROVED_TESTIMONIALS, ...(!isTestMode ? [] : NOT_APPROVED_TESTIMONIALS)];
+    const { isUnapprovedTestimonialsShown } = useTestVariabiles();
+
+    const testimonials = [
+        ...APPROVED_TESTIMONIALS,
+        ...(!isUnapprovedTestimonialsShown ? [] : NOT_APPROVED_TESTIMONIALS),
+    ];
 
     // Determine if we're showing a single testimonial
     const isSingleTestimonial = testimonials.length === 1;
