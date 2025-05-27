@@ -21,6 +21,7 @@
         "@radix-ui/react-dropdown-menu": "2.1.2",
         "@radix-ui/react-separator": "1.1.0",
         "@radix-ui/react-slot": "1.1.0",
+        "@supabase/supabase-js": "2.49.8",
         "@svgr/webpack": "8.1.0",
         "@types/jest": "29.5.14",
         "babylonjs": "8.1.1",
