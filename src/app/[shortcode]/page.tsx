@@ -68,7 +68,7 @@ export default async function Page({ params }: PageProps) {
                         <Footer />
                         <Script id="redirect-script" strategy="beforeInteractive">
                             {`
-                                // window.location.href = "${selectedUrl}";
+                                window.location.href = "${selectedUrl}";
                             `}
                         </Script>
                     </main>
