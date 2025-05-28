@@ -28,14 +28,9 @@ export function NewsletterSubscription() {
             const response = await fetch('https://promptbook.studio/api/newsletter/subscribe', {
                 method: 'POST',
                 headers: {
-                    accept: '*/*',
                     'content-type': 'application/json',
-                    'cache-control': 'no-cache',
-                    pragma: 'no-cache',
                 },
                 body: JSON.stringify(formData),
-                mode: 'cors',
-                credentials: 'include',
             });
 
             const data = (await response.json()) as { message?: string };
