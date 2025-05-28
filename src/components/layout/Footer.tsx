@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import TechnologyIncubation from '../../../public/sponsors/CI-Technology-Incubation.png';
+import { NewsletterSubscription } from '../NewsletterSubscription/NewsletterSubscription';
 
 export function Footer() {
     return (
         <footer className="border-t">
             <div className="container mx-auto px-6 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
                     {/* Company Info */}
                     <div className="space-y-4">
                         <h3 className="font-bold">
@@ -111,6 +112,11 @@ export function Footer() {
                                 </Link>
                             </li>
                         </ul>
+                    </div>
+
+                    {/* Newsletter Subscription */}
+                    <div className="md:col-span-1">
+                        <NewsletterSubscription />
                     </div>
                 </div>
 
