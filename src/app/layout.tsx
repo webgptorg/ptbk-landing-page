@@ -39,13 +39,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 {/* ----------------- */}
 
                 {/* Promptbook app 💬 Chatbot */}
-                <Script id="c1620321-aca3-4bed-85d7-bf57ac8ce35a">
+                <Script id="d753da72-f056-4bc6-99cc-8a09db164931">
                     {`
                     // [🔌] Integration code of Promptbook app 💬 Chatbot into https://ptbk.io/ or https://github.com/webgptorg/promptbook/
 
                     const bookAppScript = document.createElement('script');
                     bookAppScript.async = true;
-                    bookAppScript.src = "https://promptbook.studio/api/embed/miniapp.js?id=c1620321-aca3-4bed-85d7-bf57ac8ce35a";
+                    bookAppScript.src = "https://promptbook.studio/api/embed/miniapp.js?id=d753da72-f056-4bc6-99cc-8a09db164931";
                     document.head.appendChild(bookAppScript);
 
                     bookAppScript.addEventListener('load', () => {
