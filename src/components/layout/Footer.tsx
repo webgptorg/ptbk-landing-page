@@ -43,13 +43,26 @@ export function Footer() {
                                 </a>
                             </li>
                             <li>
+                                <Link href="/terms" className="text-muted-foreground hover:text-foreground">
+                                    Terms of Service
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/privacy" className="text-muted-foreground hover:text-foreground">
+                                    Privacy Policy
+                                </Link>
+                            </li>
+                            {/*
+                            TODO:
+                            <li>
                                 <a
-                                    href="https://promptbook.studio/miniapps/new"
+                                    href="https://promptbook.studio/chat"
                                     className="text-muted-foreground hover:text-foreground"
                                 >
                                     Playground
                                 </a>
                             </li>
+                            */}
                         </ul>
                     </div>
 
@@ -74,6 +87,11 @@ export function Footer() {
                                 <a href="#!!!" className="text-muted-foreground hover:text-foreground">
                                     Blog
                                 </a>
+                            </li>
+                            <li>
+                                <Link href="/design" className="text-muted-foreground hover:text-foreground">
+                                    Logos & Branding
+                                </Link>
                             </li>
                         </ul>
                     </div>
