@@ -139,12 +139,12 @@ export function Footer() {
                 </div>
 
                 <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
-                    <p>💜
+                    <p>
                         &copy; {new Date().getFullYear()} Promptbook
                         <br />
                         All rights reserved.
-                            <br />
-                        
+                        <br />
+                        💜
                     </p>
                 </div>
                 <div className="flex flex-col items-center mt-8">
