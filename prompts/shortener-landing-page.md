@@ -13,6 +13,27 @@ Make landing page for localhost shortened links.
 
 [ ]
 
+Auto-add call to action button on landing pages.
+
+-   When there is `landingPage` defined in the Supabase table, and the `landingPage` does not already contain a link/button to the target URL `#url`, automatically add a call to action button at the bottom of the landing page
+-   The button text should be "Go to link" and should link to the target URL `#url`
+-   Shortener logic is in `/src/app/[shortcode]/page.tsx` using Supabase table `ShortcodeLink`
+-   When the `landingPage` already contains a link/button keeping the existing logic as is.
+
+---
+
+[ ]
+
+Allow the raw HTML content in the `ShortcodeLink.landingPage`
+
+-   When there is `landingPage` defined and the `landingPage` contains `<!--no-template-->` marker or `<!DOCTYPE html>`, render the `landingPage` content as raw HTML without any template or markdown processing.
+-   Shortener logic is in `/src/app/[shortcode]/page.tsx` using Supabase table `ShortcodeLink`
+-   In other cases, keep the existing logic of rendering markdown content.
+
+---
+
+[ ]
+
 Shortened links with Landing pages should measure both views and clicks.
 
 -   Add column `ShortcodeLinkClick.navigatedAt` _(simmilar to `ShortcodeLinkClick.clickedAt`)_ which records the timestamp when user loads the landing page
