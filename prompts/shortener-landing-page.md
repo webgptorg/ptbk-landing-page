@@ -11,7 +11,7 @@ Make landing page for localhost shortened links.
 
 ---
 
-[ ]
+[x]
 
 Auto-add call to action button on landing pages.
 

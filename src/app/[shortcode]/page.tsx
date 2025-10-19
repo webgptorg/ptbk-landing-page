@@ -54,21 +54,36 @@ export default async function Page({ params }: PageProps) {
             notFound();
         }
 
-        if (data.landingPage) {
-            // Replace #url header with selectedUrl
-            const landingMarkdown = data.landingPage.replace(/^#url.*$/m, `# ${selectedUrl}`);
-            const { MarkdownContent } = await import('@/components/utils/MarkdownContent/MarkdownContent');
-            return (
-                <div className="min-h-screen">
-                    <Header />
-                    <Logo />
-                    <main className="container mx-auto px-6 py-8">
-                        <MarkdownContent>{landingMarkdown}</MarkdownContent>
-                        <Footer />
-                    </main>
-                </div>
-            );
-        }
+if (data.landingPage) {
+    // Replace #url header with selectedUrl
+    let landingMarkdown = data.landingPage.replace(/^#url.*$/m, `# ${selectedUrl}`);
+
+    // Check for existing link/button to selectedUrl or #url
+    const linkRegex = new RegExp(
+        `(\\[.*?\\]\\((?:${selectedUrl}|#url)\\))|(<a\\s+[^>]*href=["'](?:${selectedUrl}|#url)["'][^>]*>)|(<button[^>]*>(.|\\n)*?<\/button>)`,
+        'i'
+    );
+    if (!linkRegex.test(landingMarkdown)) {
+        landingMarkdown += `
+
+<a href="${selectedUrl}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded font-bold hover:bg-blue-700 transition no-underline">
+  Go to link
+</a>
+`;
+    }
+
+    const { MarkdownContent } = await import('@/components/utils/MarkdownContent/MarkdownContent');
+    return (
+        <div className="min-h-screen">
+            <Header />
+            <Logo />
+            <main className="container mx-auto px-6 py-8">
+                <MarkdownContent>{landingMarkdown}</MarkdownContent>
+                <Footer />
+            </main>
+        </div>
+    );
+}
 
         try {
             redirect(selectedUrl);
