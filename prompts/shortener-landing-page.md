@@ -22,13 +22,30 @@ Auto-add call to action button on landing pages.
 
 ---
 
-[ ]
+[x]
 
 Allow the raw HTML content in the `ShortcodeLink.landingPage`
 
 -   When there is `landingPage` defined and the `landingPage` contains `<!--no-template-->` marker or `<!DOCTYPE html>`, render the `landingPage` content as raw HTML without any template or markdown processing.
 -   Shortener logic is in `/src/app/[shortcode]/page.tsx` using Supabase table `ShortcodeLink`
 -   In other cases, keep the existing logic of rendering markdown content.
+
+---
+
+[ ]
+
+Avoid showing "Promptbook app 💬 Chatbot" from [RootLayout](/src/app/layout.tsx) on shortener page when `landingPage` is defined and has `isRawHtml`
+
+-   Shortener logic is in `/src/app/[shortcode]/page.tsx` using Supabase table `ShortcodeLink`
+
+---
+
+[ ]
+
+Center the raw html content when on shortener page when `landingPage` is defined and has `isRawHtml`
+
+-   Center both vertically and horizontally
+-   Shortener logic is in `/src/app/[shortcode]/page.tsx` using Supabase table `ShortcodeLink`
 
 ---
 
