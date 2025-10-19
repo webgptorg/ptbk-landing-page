@@ -633,37 +633,40 @@ export type Database = {
                 };
                 Relationships: [];
             };
-            ShortcodeLink: {
-                Row: {
-                    appId: number | null;
-                    createdAt: string;
-                    id: number;
-                    note: string | null;
-                    ownerEmail: string | null;
-                    shortcode: string;
-                    type: Database['public']['Enums']['shortcode_type'] | null;
-                    url: string[] | null;
-                };
-                Insert: {
-                    appId?: number | null;
-                    createdAt?: string;
-                    id?: number;
-                    note?: string | null;
-                    ownerEmail?: string | null;
-                    shortcode: string;
-                    type?: Database['public']['Enums']['shortcode_type'] | null;
-                    url?: string[] | null;
-                };
-                Update: {
-                    appId?: number | null;
-                    createdAt?: string;
-                    id?: number;
-                    note?: string | null;
-                    ownerEmail?: string | null;
-                    shortcode?: string;
-                    type?: Database['public']['Enums']['shortcode_type'] | null;
-                    url?: string[] | null;
-                };
+ShortcodeLink: {
+    Row: {
+        appId: number | null;
+        createdAt: string;
+        id: number;
+        note: string | null;
+        ownerEmail: string | null;
+        shortcode: string;
+        type: Database['public']['Enums']['shortcode_type'] | null;
+        url: string[] | null;
+        landingPage: string | null;
+    };
+Insert: {
+        appId?: number | null;
+        createdAt?: string;
+        id?: number;
+        note?: string | null;
+        ownerEmail?: string | null;
+        shortcode: string;
+        type?: Database['public']['Enums']['shortcode_type'] | null;
+        url?: string[] | null;
+        landingPage?: string | null;
+    };
+Update: {
+        appId?: number | null;
+        createdAt?: string;
+        id?: number;
+        note?: string | null;
+        ownerEmail?: string | null;
+        shortcode?: string;
+        type?: Database['public']['Enums']['shortcode_type'] | null;
+        url?: string[] | null;
+        landingPage?: string | null;
+    };
                 Relationships: [
                     {
                         foreignKeyName: 'ShortcodeLink_appId_fkey';

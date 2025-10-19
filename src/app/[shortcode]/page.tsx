@@ -21,7 +21,7 @@ export default async function Page({ params }: PageProps) {
     try {
         const { data, error } = await getSupabaseForServer()
             .from('ShortcodeLink')
-            .select('id, url')
+            .select('id, url, landingPage')
             .eq('shortcode', shortcode)
             .single();
 
@@ -52,6 +52,22 @@ export default async function Page({ params }: PageProps) {
 
         if (!selectedUrl) {
             notFound();
+        }
+
+        if (data.landingPage) {
+            // Replace #url header with selectedUrl
+            const landingMarkdown = data.landingPage.replace(/^#url.*$/m, `# ${selectedUrl}`);
+            const { MarkdownContent } = await import('@/components/utils/MarkdownContent/MarkdownContent');
+            return (
+                <div className="min-h-screen">
+                    <Header />
+                    <Logo />
+                    <main className="container mx-auto px-6 py-8">
+                        <MarkdownContent>{landingMarkdown}</MarkdownContent>
+                        <Footer />
+                    </main>
+                </div>
+            );
         }
 
         try {
