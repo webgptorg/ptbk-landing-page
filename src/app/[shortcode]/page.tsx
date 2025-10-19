@@ -6,6 +6,7 @@ import { headers } from 'next/headers';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import Script from 'next/script';
+import { getShortcodeLink } from './getShortcodeLink';
 
 interface PageProps {
     params: { shortcode: string };
@@ -19,13 +20,9 @@ export default async function Page({ params }: PageProps) {
     }
 
     try {
-        const { data, error } = await getSupabaseForServer()
-            .from('ShortcodeLink')
-            .select('id, url, landingPage')
-            .eq('shortcode', shortcode)
-            .single();
+        const data = await getShortcodeLink(shortcode);
 
-        if (error || !data || !data.url || data.url.length === 0) {
+        if (!data || !data.url || data.url.length === 0) {
             notFound();
         }
 
@@ -55,10 +52,6 @@ export default async function Page({ params }: PageProps) {
         }
 
         if (data.landingPage) {
-            // Check for raw HTML markers
-            const isRawHtml =
-                data.landingPage.includes('<!--no-template-->') || data.landingPage.includes('<!DOCTYPE html>');
-
             // Replace #url header with selectedUrl
             let landingContent = data.landingPage.replace(/^#url.*$/m, `# ${selectedUrl}`);
 
@@ -76,21 +69,24 @@ export default async function Page({ params }: PageProps) {
 `;
             }
 
+            const isRawHtml =
+                data.landingPage.includes('<!--no-template-->') || data.landingPage.includes('<!DOCTYPE html>');
+
             if (isRawHtml) {
                 return <div dangerouslySetInnerHTML={{ __html: landingContent }} />;
-            } else {
-                const { MarkdownContent } = await import('@/components/utils/MarkdownContent/MarkdownContent');
-                return (
-                    <div className="min-h-screen">
-                        <Header />
-                        <Logo />
-                        <main className="container mx-auto px-6 py-8">
-                            <MarkdownContent>{landingContent}</MarkdownContent>
-                            <Footer />
-                        </main>
-                    </div>
-                );
             }
+
+            const { MarkdownContent } = await import('@/components/utils/MarkdownContent/MarkdownContent');
+            return (
+                <div className="min-h-screen">
+                    <Header />
+                    <Logo />
+                    <main className="container mx-auto px-6 py-8">
+                        <MarkdownContent>{landingContent}</MarkdownContent>
+                        <Footer />
+                    </main>
+                </div>
+            );
         }
 
         try {

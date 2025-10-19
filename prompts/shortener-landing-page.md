@@ -32,7 +32,7 @@ Allow the raw HTML content in the `ShortcodeLink.landingPage`
 
 ---
 
-[ ]
+[x]
 
 Avoid showing "Promptbook app 💬 Chatbot" from [RootLayout](/src/app/layout.tsx) on shortener page when `landingPage` is defined and has `isRawHtml`
 
