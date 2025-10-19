@@ -57,3 +57,9 @@ Shortened links with Landing pages should have nice Open Graph metadata for bett
     -   Use first paragraph as `description` and `og:description`
     -   Use first image as `og:image` (if any), otherwise don't set `og:image`
 -   Shortener logic is in `/src/app/[shortcode]/page.tsx` using Supabase table `ShortcodeLink`
+
+---
+
+[ ]
+
+_<- Put the landing page options in the form in Promptbook.studio_
