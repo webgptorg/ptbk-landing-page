@@ -35,16 +35,6 @@ export default async function Page({ params }: PageProps) {
         const language = headerList.get('accept-language') ?? '';
         const platform = headerList.get('sec-ch-ua-platform') ?? '';
 
-        await getSupabaseForServer().from('ShortcodeLinkClick').insert({
-            shortcodeLinkId: data.id,
-            userAgent,
-            referer,
-            ip,
-            language,
-            platform,
-            clickedAt: new Date().toISOString(),
-        });
-
         const randomIndex = Math.floor(Math.random() * data.url.length);
         const selectedUrl = data.url[randomIndex];
 
@@ -53,6 +43,29 @@ export default async function Page({ params }: PageProps) {
         }
 
         if (data.landingPage) {
+            const supabase = getSupabaseForServer();
+            const { data: clickData, error: clickError } = await supabase
+                .from('ShortcodeLinkClick')
+                .insert({
+                    shortcodeLinkId: data.id,
+                    userAgent,
+                    referer,
+                    ip,
+                    language,
+                    platform,
+                    navigatedAt: new Date().toISOString(),
+                    clickedAt: null,
+                })
+                .select('id')
+                .single();
+
+            if (clickError) {
+                console.error('Error creating click record:', clickError);
+                // Note: Proceeding without click tracking if insertion fails
+            }
+
+            const clickId = clickData?.id;
+
             // Replace #url header with selectedUrl
             let landingContent = data.landingPage.replace(/^#url.*$/m, `# ${selectedUrl}`);
 
@@ -74,10 +87,26 @@ export default async function Page({ params }: PageProps) {
             const isRawHtml =
                 data.landingPage.includes('<!--no-template-->') || data.landingPage.includes('<!DOCTYPE html>');
 
+            const trackingScript = clickId
+                ? `
+                  const clickId = ${clickId};
+                  document.body.addEventListener('click', (event) => {
+                      let target = event.target;
+                      while (target && target.tagName !== 'A') {
+                          target = target.parentElement;
+                      }
+                      if (target && target.tagName === 'A') {
+                          navigator.sendBeacon('/api/track-click', JSON.stringify({ clickId }));
+                      }
+                  });
+              `
+                : '';
+
             if (isRawHtml) {
                 return (
                     <div className="flex items-center justify-center min-h-screen">
                         <div dangerouslySetInnerHTML={{ __html: landingContent }} />
+                        <Script id="tracking-script">{trackingScript}</Script>
                     </div>
                 );
             }
@@ -91,30 +120,42 @@ export default async function Page({ params }: PageProps) {
                         <MarkdownContent>{landingContent}</MarkdownContent>
                         <Footer />
                     </main>
+                    <Script id="tracking-script">{trackingScript}</Script>
                 </div>
             );
-        }
+        } else {
+            await getSupabaseForServer().from('ShortcodeLinkClick').insert({
+                shortcodeLinkId: data.id,
+                userAgent,
+                referer,
+                ip,
+                language,
+                platform,
+                navigatedAt: new Date().toISOString(),
+                clickedAt: new Date().toISOString(),
+            });
 
-        try {
-            redirect(selectedUrl);
-        } finally {
-            return (
-                <div className="min-h-screen">
-                    <Header />
-                    <Logo />
-                    <main className="container mx-auto px-6 py-8">
-                        <div className="text-center">
-                            Redirecting to: <Link href={selectedUrl}>{selectedUrl}</Link>
-                        </div>
-                        <Footer />
-                        <Script id="redirect-script" strategy="beforeInteractive">
-                            {`
+            try {
+                redirect(selectedUrl);
+            } finally {
+                return (
+                    <div className="min-h-screen">
+                        <Header />
+                        <Logo />
+                        <main className="container mx-auto px-6 py-8">
+                            <div className="text-center">
+                                Redirecting to: <Link href={selectedUrl}>{selectedUrl}</Link>
+                            </div>
+                            <Footer />
+                            <Script id="redirect-script" strategy="beforeInteractive">
+                                {`
                                 window.location.href = "${selectedUrl}";
                             `}
-                        </Script>
-                    </main>
-                </div>
-            );
+                            </Script>
+                        </main>
+                    </div>
+                );
+            }
         }
     } catch (err) {
         console.error('Error processing shortcode:', err);

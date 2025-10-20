@@ -679,30 +679,33 @@ Update: {
             };
             ShortcodeLinkClick: {
                 Row: {
-                    clickedAt: string;
+                    clickedAt: string | null;
                     id: number;
                     ip: string | null;
                     language: string | null;
+                    navigatedAt: string;
                     platform: string | null;
                     referer: string | null;
                     shortcodeLinkId: number;
                     userAgent: string | null;
                 };
                 Insert: {
-                    clickedAt?: string;
+                    clickedAt?: string | null;
                     id?: number;
                     ip?: string | null;
                     language?: string | null;
+                    navigatedAt?: string;
                     platform?: string | null;
                     referer?: string | null;
                     shortcodeLinkId: number;
                     userAgent?: string | null;
                 };
                 Update: {
-                    clickedAt?: string;
+                    clickedAt?: string | null;
                     id?: number;
                     ip?: string | null;
                     language?: string | null;
+                    navigatedAt?: string;
                     platform?: string | null;
                     referer?: string | null;
                     shortcodeLinkId?: number;

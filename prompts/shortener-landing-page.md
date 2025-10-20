@@ -49,7 +49,7 @@ Center the raw html content when on shortener page when `landingPage` is defined
 
 ---
 
-[ ]
+[x]
 
 Shortened links with Landing pages should measure both views and clicks.
 
