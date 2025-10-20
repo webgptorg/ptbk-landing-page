@@ -7,10 +7,41 @@ import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import Script from 'next/script';
 import { spaceTrim } from 'spacetrim';
+import { getLandingPageMetadata } from './getLandingPageMetadata';
 import { getShortcodeLink } from './getShortcodeLink';
+import { Metadata } from 'next';
 
 interface PageProps {
     params: { shortcode: string };
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { shortcode } = params;
+    const data = await getShortcodeLink(shortcode);
+
+    if (!data || !data.landingPage) {
+        return {};
+    }
+
+    const { title, description, image } = getLandingPageMetadata(data.landingPage);
+
+    const metadata: Metadata = {};
+
+    if (title) {
+        metadata.title = title;
+        metadata.openGraph = { ...metadata.openGraph, title };
+    }
+
+    if (description) {
+        metadata.description = description;
+        metadata.openGraph = { ...metadata.openGraph, description };
+    }
+
+    if (image) {
+        metadata.openGraph = { ...metadata.openGraph, images: [{ url: image }] };
+    }
+
+    return metadata;
 }
 
 export default async function Page({ params }: PageProps) {

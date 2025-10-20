@@ -62,7 +62,7 @@ Shortened links with Landing pages should measure both views and clicks.
 
 ---
 
-[ ]
+[x] <- ???
 
 Shortened links with Landing pages should have nice Open Graph metadata for better sharing on social media.
 
