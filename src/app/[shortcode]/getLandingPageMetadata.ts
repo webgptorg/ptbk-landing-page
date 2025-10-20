@@ -8,7 +8,7 @@ export function getLandingPageMetadata(landingPageContent: string) {
 
     const descriptionMatch = landingPageContent.match(/^\s*([^#\s].*)$/m);
     const descriptionMarkdown = descriptionMatch ? descriptionMatch[1] : null;
-    const description = removeMarkdownFormatting(descriptionMarkdown);
+    const description = descriptionMarkdown === null ? null : removeMarkdownFormatting(descriptionMarkdown);
 
     const imageMatch = landingPageContent.match(/!\[.*\]\((.*)\)/);
     const image = imageMatch ? imageMatch[1] : null;
