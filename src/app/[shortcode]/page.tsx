@@ -6,6 +6,7 @@ import { headers } from 'next/headers';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import Script from 'next/script';
+import { spaceTrim } from 'spacetrim';
 import { getShortcodeLink } from './getShortcodeLink';
 
 interface PageProps {
@@ -61,19 +62,24 @@ export default async function Page({ params }: PageProps) {
                 'i',
             );
             if (!linkRegex.test(landingContent)) {
-                landingContent += `
-
-<a href="${selectedUrl}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded font-bold hover:bg-blue-700 transition no-underline">
-  Go to link
-</a>
-`;
+                landingContent += spaceTrim(`
+                    <p>
+                        <a href="${selectedUrl}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded font-bold hover:bg-blue-700 transition no-underline">
+                            Go to link
+                        </a>
+                    </p>
+                `);
             }
 
             const isRawHtml =
                 data.landingPage.includes('<!--no-template-->') || data.landingPage.includes('<!DOCTYPE html>');
 
             if (isRawHtml) {
-                return <div dangerouslySetInnerHTML={{ __html: landingContent }} />;
+                return (
+                    <div className="flex items-center justify-center min-h-screen">
+                        <div dangerouslySetInnerHTML={{ __html: landingContent }} />
+                    </div>
+                );
             }
 
             const { MarkdownContent } = await import('@/components/utils/MarkdownContent/MarkdownContent');

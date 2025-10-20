@@ -32,7 +32,7 @@ Allow the raw HTML content in the `ShortcodeLink.landingPage`
 
 ---
 
-[x]
+[x][ ]
 
 Avoid showing "Promptbook app 💬 Chatbot" from [RootLayout](/src/app/layout.tsx) on shortener page when `landingPage` is defined and has `isRawHtml`
 
@@ -40,7 +40,7 @@ Avoid showing "Promptbook app 💬 Chatbot" from [RootLayout](/src/app/layout.ts
 
 ---
 
-[ ]
+[x]
 
 Center the raw html content when on shortener page when `landingPage` is defined and has `isRawHtml`
 
