@@ -84,8 +84,9 @@ export default async function Page({ params }: PageProps) {
                 `);
             }
 
-            const isRawHtml =
-                data.landingPage.includes('<!--no-template-->') || data.landingPage.includes('<!DOCTYPE html>');
+            const isBareHtml = data.landingPage.includes('<!DOCTYPE html>');
+
+            const isBarePage = data.landingPage.includes('<!--no-template-->') || isBareHtml;
 
             const trackingScript = clickId
                 ? `
@@ -102,7 +103,7 @@ export default async function Page({ params }: PageProps) {
               `
                 : '';
 
-            if (isRawHtml) {
+            if (isBareHtml) {
                 return (
                     <div className="flex items-center justify-center min-h-screen">
                         <div dangerouslySetInnerHTML={{ __html: landingContent }} />
@@ -112,6 +113,16 @@ export default async function Page({ params }: PageProps) {
             }
 
             const { MarkdownContent } = await import('@/components/utils/MarkdownContent/MarkdownContent');
+
+            if (isBarePage) {
+                return (
+                    <div className="flex items-center justify-center min-h-screen">
+                        <MarkdownContent>{landingContent}</MarkdownContent>
+                        <Script id="tracking-script">{trackingScript}</Script>
+                    </div>
+                );
+            }
+
             return (
                 <div className="min-h-screen">
                     <Header />
