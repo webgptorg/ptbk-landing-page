@@ -1,8 +1,11 @@
-[ ]
+[x]
 
 Redesign the website landing page to more match the updated pivot of the Promptbook project:
 
-````markdown
+-   Look at https://github.com/webgptorg/promptbook
+
+---
+
 # 📖 The Book Whitepaper
 
 For most business applications nowadays, the biggest challenge isn't about the raw capabilities of AI models. Large language models like GPT-5 or Claude-4.1 are extremely capable.
@@ -18,7 +21,6 @@ PERSONA You are a company lawyer.
 Your job is to provide legal advice and support to the company and its employees.
 You are knowledgeable, professional, and detail-oriented.
 ```
-````
 
 <div style="page-break-after: always;"></div>
 
@@ -154,7 +156,3 @@ Copy your own behavior, personality, and knowledge into book and create your AI 
 ### AI persona workpool
 
 Or you can pick from our library of pre-written books for various roles and tasks. You can find books for customer support, coding, marketing, sales, HR, legal, and many other roles.
-
-```
-
-```
